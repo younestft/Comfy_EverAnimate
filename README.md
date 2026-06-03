@@ -1,10 +1,10 @@
 # Comfy EverAnimate
 
-Native ComfyUI custom nodes for experimenting with EverAnimate-style latent anchor and motion memory on top of native WanAnimate workflows.
+Native ComfyUI custom nodes for experimenting with EverAnimate-style latent anchors plus native WanAnimate image carry-over on top of native sampler workflows.
 
 ## Nodes
 
-- **Comfy EverAnimate**: native `WanAnimateToVideo`-style conditioning node with EverAnimate anchor latents, latent motion memory, pose strength, and face strength.
+- **Comfy EverAnimate**: native `WanAnimateToVideo`-style conditioning node with EverAnimate anchor latents, native image carry-over, optional latent motion memory, pose strength, and face strength.
 - **Comfy EverAnimate Trim Images**: trims duplicated handoff frames after VAE decode.
 
 ## Intended Workflow
@@ -13,7 +13,9 @@ Native ComfyUI custom nodes for experimenting with EverAnimate-style latent anch
 Comfy EverAnimate -> native KSampler -> TrimVideoLatent -> VAEDecode -> Comfy EverAnimate Trim Images
 ```
 
-For the next chunk, connect the previous native sampler output into the next **Comfy EverAnimate** `prev_samples` input.
+For smoother chunk boundaries, connect the previous chunk's trimmed decoded images into the next **Comfy EverAnimate** `continue_motion` input. This uses native WanAnimate-style image carry-over and takes priority over `prev_samples`.
+
+For chunk 1, you can connect the reference image into `continue_motion` and set `continue_motion_max_frames` to `1` to reduce startup flashes. For later chunks, `continue_motion_max_frames` defaults to `5`.
 
 ## Defaults
 
@@ -22,6 +24,8 @@ For the next chunk, connect the previous native sampler output into the next **C
 - `video_frame_offset`: `0`
 - `pose_strength`: `1.0`
 - `face_strength`: `1.0`
+- `motion_handoff_strength`: `1.0`
+- `continue_motion_max_frames`: `5`
 
 ## Install
 

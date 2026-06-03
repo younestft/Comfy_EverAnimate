@@ -112,12 +112,42 @@ class ComfyEverAnimate(io.ComfyNode):
                     step=0.001,
                     tooltip="Strength for native WanAnimate face guide. 0 sends a neutral face guide.",
                 ),
+                io.Float.Input(
+                    "motion_handoff_strength",
+                    default=1.0,
+                    min=0.0,
+                    max=1.0,
+                    step=0.01,
+                    tooltip=(
+                        "How strongly the previous chunk's motion latents are locked into the next chunk. "
+                        "1.0 is the original hard handoff; 0.6-0.8 is usually smoother for low-step distill runs."
+                    ),
+                ),
+                io.Int.Input(
+                    "continue_motion_max_frames",
+                    default=5,
+                    min=1,
+                    max=nodes.MAX_RESOLUTION,
+                    step=4,
+                    tooltip=(
+                        "When continue_motion images are connected, carry this many final RGB frames into the next chunk. "
+                        "This matches native WanAnimate's image carry-over behavior."
+                    ),
+                ),
                 io.ClipVisionOutput.Input("clip_vision_output", optional=True),
                 io.Image.Input("reference_image", optional=True),
                 io.Image.Input("face_video", optional=True),
                 io.Image.Input("pose_video", optional=True),
                 io.Image.Input("background_video", optional=True),
                 io.Mask.Input("character_mask", optional=True),
+                io.Image.Input(
+                    "continue_motion",
+                    optional=True,
+                    tooltip=(
+                        "Native-style image carry-over. Connect the previous chunk's final decoded images here. "
+                        "When connected, this takes priority over prev_samples."
+                    ),
+                ),
                 io.Latent.Input(
                     "prev_samples",
                     optional=True,
@@ -155,12 +185,15 @@ class ComfyEverAnimate(io.ComfyNode):
         video_frame_offset,
         pose_strength,
         face_strength,
+        motion_handoff_strength,
+        continue_motion_max_frames,
         reference_image=None,
         clip_vision_output=None,
         face_video=None,
         pose_video=None,
         background_video=None,
         character_mask=None,
+        continue_motion=None,
         prev_samples=None,
         video_anchor_latent=None,
     ) -> io.NodeOutput:
@@ -171,11 +204,23 @@ class ComfyEverAnimate(io.ComfyNode):
         motion_count = min(int(num_motion_latents), latent_length)
         pose_strength = float(pose_strength)
         face_strength = float(face_strength)
+        motion_handoff_strength = max(0.0, min(1.0, float(motion_handoff_strength)))
 
-        prev_latents = _latent_samples(prev_samples, "prev_samples")
+        continue_motion_frames = 0
+        continue_motion_latents = 0
+        has_image_carry = continue_motion is not None and continue_motion.shape[0] > 0
+        if has_image_carry:
+            continue_motion_frames = min(int(continue_motion_max_frames), continue_motion.shape[0], length)
+            continue_motion_latents = ((continue_motion_frames - 1) // 4) + 1
+
+        prev_latents = None if has_image_carry else _latent_samples(prev_samples, "prev_samples")
         has_motion_memory = prev_latents is not None and motion_count > 0
-        trim_image = (motion_count - 1) * 4 + 1 if has_motion_memory else 0
-        effective_frame_offset = max(0, int(video_frame_offset) - trim_image)
+        if has_image_carry:
+            trim_image = max(0, continue_motion_latents * 4 - 3)
+            effective_frame_offset = max(0, int(video_frame_offset) - continue_motion_frames)
+        else:
+            trim_image = (motion_count - 1) * 4 + 1 if has_motion_memory else 0
+            effective_frame_offset = max(0, int(video_frame_offset) - trim_image)
 
         if reference_image is None:
             reference_image = torch.zeros((1, height, width, 3))
@@ -193,6 +238,11 @@ class ComfyEverAnimate(io.ComfyNode):
         cond_dtype = anchor_stack.dtype
 
         image = torch.ones((length, height, width, 3), device=cond_device, dtype=reference_image.dtype) * 0.5
+
+        if has_image_carry:
+            carry_images = continue_motion[-continue_motion_frames:]
+            carry_images = _upscale_images(carry_images, width, height, continue_motion_frames).to(device=cond_device)
+            image[: carry_images.shape[0]] = carry_images
 
         if background_video is not None and background_video.shape[0] > effective_frame_offset:
             background_video = background_video[effective_frame_offset:]
@@ -218,8 +268,10 @@ class ComfyEverAnimate(io.ComfyNode):
             device=cond_device,
             dtype=cond_dtype,
         )
-        if has_motion_memory:
-            window_mask_frames[:, :, : motion_count * 4] = 0.0
+        if has_image_carry:
+            window_mask_frames[:, :, : continue_motion_latents * 4] = 1.0 - motion_handoff_strength
+        elif has_motion_memory:
+            window_mask_frames[:, :, : motion_count * 4] = 1.0 - motion_handoff_strength
 
         if character_mask is not None:
             if character_mask.shape[0] > effective_frame_offset or character_mask.shape[0] == 1:
@@ -238,7 +290,12 @@ class ComfyEverAnimate(io.ComfyNode):
                     "nearest-exact",
                     "center",
                 )
-                protected_frames = motion_count * 4 if has_motion_memory else 0
+                if has_image_carry:
+                    protected_frames = continue_motion_latents * 4
+                elif has_motion_memory:
+                    protected_frames = motion_count * 4
+                else:
+                    protected_frames = 0
                 if character_mask.shape[2] > protected_frames:
                     window_mask_frames[:, :, protected_frames:character_mask.shape[2]] = character_mask[
                         :, :, protected_frames:

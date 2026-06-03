@@ -1,8 +1,8 @@
 {
   "id": "bd4dedbe-f1d6-4fa3-a945-02e24d21c764",
   "revision": 0,
-  "last_node_id": 296,
-  "last_link_id": 500,
+  "last_node_id": 362,
+  "last_link_id": 769,
   "nodes": [
     {
       "id": 137,
@@ -2635,7 +2635,18 @@
           "type": "MODEL",
           "links": [
             436,
-            448
+            448,
+            516,
+            538,
+            560,
+            589,
+            611,
+            633,
+            655,
+            677,
+            699,
+            721,
+            743
           ]
         }
       ],
@@ -2674,7 +2685,18 @@
           "type": "CONDITIONING",
           "links": [
             440,
-            456
+            456,
+            504,
+            526,
+            548,
+            577,
+            599,
+            621,
+            643,
+            665,
+            687,
+            709,
+            731
           ]
         }
       ],
@@ -2713,7 +2735,18 @@
           "type": "CONDITIONING",
           "links": [
             441,
-            457
+            457,
+            505,
+            527,
+            549,
+            578,
+            600,
+            622,
+            644,
+            666,
+            688,
+            710,
+            732
           ]
         }
       ],
@@ -2754,7 +2787,29 @@
             442,
             455,
             458,
-            465
+            465,
+            506,
+            523,
+            528,
+            545,
+            550,
+            567,
+            579,
+            596,
+            601,
+            618,
+            623,
+            640,
+            645,
+            662,
+            667,
+            684,
+            689,
+            706,
+            711,
+            728,
+            733,
+            750
           ]
         }
       ],
@@ -2800,7 +2855,9 @@
           "name": "images",
           "type": "IMAGE",
           "links": [
-            470
+            470,
+            501,
+            503
           ]
         }
       ],
@@ -2890,7 +2947,19 @@
           "type": "IMAGE",
           "links": [
             443,
-            459
+            459,
+            502,
+            507,
+            529,
+            551,
+            580,
+            602,
+            624,
+            646,
+            668,
+            690,
+            712,
+            734
           ]
         }
       ],
@@ -2929,7 +2998,18 @@
           "type": "IMAGE",
           "links": [
             444,
-            460
+            460,
+            508,
+            530,
+            552,
+            581,
+            603,
+            625,
+            647,
+            669,
+            691,
+            713,
+            735
           ]
         }
       ],
@@ -2968,7 +3048,18 @@
           "type": "IMAGE",
           "links": [
             445,
-            461
+            461,
+            509,
+            531,
+            553,
+            582,
+            604,
+            626,
+            648,
+            670,
+            692,
+            714,
+            736
           ]
         }
       ],
@@ -3007,7 +3098,18 @@
           "type": "*",
           "links": [
             482,
-            484
+            484,
+            510,
+            532,
+            554,
+            583,
+            605,
+            627,
+            649,
+            671,
+            693,
+            715,
+            737
           ]
         }
       ],
@@ -3046,7 +3148,18 @@
           "type": "MASK",
           "links": [
             483,
-            485
+            485,
+            511,
+            533,
+            555,
+            584,
+            606,
+            628,
+            650,
+            672,
+            694,
+            716,
+            738
           ]
         }
       ],
@@ -3088,7 +3201,18 @@
           "type": "INT",
           "links": [
             488,
-            490
+            490,
+            512,
+            534,
+            556,
+            585,
+            607,
+            629,
+            651,
+            673,
+            695,
+            717,
+            739
           ]
         }
       ],
@@ -3130,7 +3254,18 @@
           "type": "INT",
           "links": [
             489,
-            491
+            491,
+            513,
+            535,
+            557,
+            586,
+            608,
+            630,
+            652,
+            674,
+            696,
+            718,
+            740
           ]
         }
       ],
@@ -3305,7 +3440,8 @@
           "name": "images",
           "type": "IMAGE",
           "links": [
-            471
+            471,
+            514
           ]
         }
       ],
@@ -3520,7 +3656,7 @@
         "force_rate": 0,
         "custom_width": 480,
         "custom_height": 832,
-        "frame_load_cap": 145,
+        "frame_load_cap": 992,
         "skip_first_frames": 0,
         "select_every_nth": 1,
         "format": "Wan",
@@ -3534,7 +3670,7 @@
             "force_rate": 0,
             "custom_width": 480,
             "custom_height": 832,
-            "frame_load_cap": 145,
+            "frame_load_cap": 992,
             "skip_first_frames": 0,
             "select_every_nth": 1
           }
@@ -3573,8 +3709,7 @@
           "type": "IMAGE",
           "slot_index": 0,
           "links": [
-            462,
-            493
+            462
           ]
         }
       ],
@@ -3639,7 +3774,7 @@
         "Node name for S&R": "KSampler"
       },
       "widgets_values": [
-        43,
+        42,
         "fixed",
         4,
         1,
@@ -3715,6 +3850,12 @@
           "shape": 7,
           "type": "MASK",
           "link": 483
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 502
         },
         {
           "name": "prev_samples",
@@ -3797,13 +3938,15 @@
       "widgets_values": [
         832,
         480,
-        77,
+        81,
         1,
         4,
         1,
-        1,
-        1,
-        0
+        0,
+        1.0,
+        1.0,
+        1.0,
+        1
       ],
       "color": "#223",
       "bgcolor": "#354"
@@ -3850,7 +3993,6 @@
           "type": "LATENT",
           "slot_index": 0,
           "links": [
-            446,
             466
           ]
         }
@@ -4057,10 +4199,16 @@
           "link": 485
         },
         {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 501
+        },
+        {
           "name": "prev_samples",
           "shape": 7,
           "type": "LATENT",
-          "link": 446
+          "link": null
         },
         {
           "name": "video_anchor_latent",
@@ -4132,7 +4280,9 @@
         {
           "name": "video_frame_offset",
           "type": "INT",
-          "links": []
+          "links": [
+            515
+          ]
         }
       ],
       "title": "Chunk 2 - Comfy EverAnimate",
@@ -4143,13 +4293,15 @@
       "widgets_values": [
         832,
         480,
-        77,
+        81,
         1,
         4,
         1,
-        1,
-        1,
-        0
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
       ],
       "color": "#223",
       "bgcolor": "#354"
@@ -4256,6 +4408,12 @@
           "link": null
         },
         {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
           "name": "prev_samples",
           "shape": 7,
           "type": "LATENT",
@@ -4306,13 +4464,15 @@
       "widgets_values": [
         832,
         480,
-        77,
+        81,
         1,
         4,
         1,
-        1,
-        1,
-        0
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
       ]
     },
     {
@@ -4333,7 +4493,7 @@
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 493
+          "link": 503
         },
         {
           "name": "audio",
@@ -4361,7 +4521,7 @@
           "links": null
         }
       ],
-      "title": "Video Combine - Final 4 Chunks",
+      "title": "Video Combine - Final 13 Chunks",
       "properties": {
         "cnr_id": "comfyui-videohelpersuite",
         "ver": "4ee72c065db22c9d96c2427954dc69e7b908444b",
@@ -4370,7 +4530,7 @@
       "widgets_values": {
         "frame_rate": 24,
         "loop_count": 0,
-        "filename_prefix": "Comfy_EverAnimate_4_chunks",
+        "filename_prefix": "Comfy_EverAnimate_13_chunks_81f",
         "format": "video/h264-mp4",
         "pix_fmt": "yuv420p",
         "crf": 19,
@@ -4382,12 +4542,12 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "Comfy_EverAnimate_4_chunks_00008-audio.mp4",
+            "filename": "Comfy_EverAnimate_13_chunks_81f_preview.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4",
             "frame_rate": 24,
-            "workflow": "Comfy_EverAnimate_4_chunks_00008.png",
+            "workflow": "Comfy_EverAnimate_13_chunks_81f_preview.png",
             "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_4_chunks_00008-audio.mp4"
           }
         }
@@ -4405,7 +4565,7 @@
         925.7777777777777
       ],
       "flags": {},
-      "order": 93,
+      "order": 163,
       "mode": 0,
       "inputs": [
         {
@@ -4439,7 +4599,7 @@
           "links": null
         }
       ],
-      "title": "Video Combine - Final 4 Chunks",
+      "title": "Video Combine - Final 13 Chunks",
       "properties": {
         "cnr_id": "comfyui-videohelpersuite",
         "ver": "4ee72c065db22c9d96c2427954dc69e7b908444b",
@@ -4448,7 +4608,7 @@
       "widgets_values": {
         "frame_rate": 24,
         "loop_count": 0,
-        "filename_prefix": "Comfy_EverAnimate_4_chunks",
+        "filename_prefix": "Comfy_EverAnimate_13_chunks_81f",
         "format": "video/h264-mp4",
         "pix_fmt": "yuv420p",
         "crf": 19,
@@ -4460,12 +4620,12 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "Comfy_EverAnimate_4_chunks_00011-audio.mp4",
+            "filename": "Comfy_EverAnimate_13_chunks_81f_preview.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4",
             "frame_rate": 24,
-            "workflow": "Comfy_EverAnimate_4_chunks_00011.png",
+            "workflow": "Comfy_EverAnimate_13_chunks_81f_preview.png",
             "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_4_chunks_00011-audio.mp4"
           }
         }
@@ -4531,13 +4691,13 @@
         150
       ],
       "flags": {},
-      "order": 92,
+      "order": 162,
       "mode": 0,
       "inputs": [
         {
           "name": "image_1",
           "type": "IMAGE,MASK",
-          "link": 500
+          "link": 769
         },
         {
           "name": "image_2",
@@ -4598,11 +4758,4661 @@
           "name": "IMAGE",
           "type": "IMAGE",
           "links": [
-            500
+            570
           ]
         }
       ],
       "title": "Combine chunks 1 + 2",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 297,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        4625.949834615884,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 94,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 504
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 505
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 506
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 507
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 508
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 509
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 510
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 511
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 514
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 512
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 513
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 515
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            517
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            518
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            519
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            521
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            525
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            537
+          ]
+        }
+      ],
+      "title": "Chunk 3 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 298,
+      "type": "KSampler",
+      "pos": [
+        5100.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 95,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 516
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 517
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 518
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 519
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            520
+          ]
+        }
+      ],
+      "title": "Chunk 3 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 299,
+      "type": "TrimVideoLatent",
+      "pos": [
+        5547.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 96,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 520
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 521
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            522
+          ]
+        }
+      ],
+      "title": "Chunk 3 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 300,
+      "type": "VAEDecode",
+      "pos": [
+        5866.982021575781,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 97,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 522
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 523
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            524
+          ]
+        }
+      ],
+      "title": "Chunk 3 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 301,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        6135.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 98,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 524
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 525
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            536,
+            571
+          ]
+        }
+      ],
+      "title": "Chunk 3 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 302,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        5525.949834615884,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 99,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 526
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 527
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 528
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 529
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 530
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 531
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 532
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 533
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 536
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 534
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 535
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 537
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            539
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            540
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            541
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            543
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            547
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            559
+          ]
+        }
+      ],
+      "title": "Chunk 4 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 303,
+      "type": "KSampler",
+      "pos": [
+        6000.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 100,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 538
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 539
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 540
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 541
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            542
+          ]
+        }
+      ],
+      "title": "Chunk 4 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 304,
+      "type": "TrimVideoLatent",
+      "pos": [
+        6447.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 101,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 542
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 543
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            544
+          ]
+        }
+      ],
+      "title": "Chunk 4 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 305,
+      "type": "VAEDecode",
+      "pos": [
+        6766.982021575781,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 102,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 544
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 545
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            546
+          ]
+        }
+      ],
+      "title": "Chunk 4 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 306,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        7035.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 103,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 546
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 547
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            558,
+            573
+          ]
+        }
+      ],
+      "title": "Chunk 4 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 307,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        6425.949834615884,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 104,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 548
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 549
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 550
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 551
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 552
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 553
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 554
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 555
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 558
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 556
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 557
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 559
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            561
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            562
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            563
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            565
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            569
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            588
+          ]
+        }
+      ],
+      "title": "Chunk 5 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 308,
+      "type": "KSampler",
+      "pos": [
+        6900.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 105,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 560
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 561
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 562
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 563
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            564
+          ]
+        }
+      ],
+      "title": "Chunk 5 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 309,
+      "type": "TrimVideoLatent",
+      "pos": [
+        7347.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 106,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 564
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 565
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            566
+          ]
+        }
+      ],
+      "title": "Chunk 5 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 310,
+      "type": "VAEDecode",
+      "pos": [
+        7666.982021575781,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 107,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 566
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 567
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            568
+          ]
+        }
+      ],
+      "title": "Chunk 5 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 311,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        7935.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 108,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 568
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 569
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            575,
+            587
+          ]
+        }
+      ],
+      "title": "Chunk 5 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 312,
+      "type": "ImageBatch",
+      "pos": [
+        6150,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 109,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 570
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 571
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            572
+          ]
+        }
+      ],
+      "title": "Combine chunks 1 + 2 + 3",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 313,
+      "type": "ImageBatch",
+      "pos": [
+        7050,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 110,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 572
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 573
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            574
+          ]
+        }
+      ],
+      "title": "Combine chunks 1 + 2 + 3 + 4",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 314,
+      "type": "ImageBatch",
+      "pos": [
+        7950,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 111,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 574
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 575
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            753
+          ]
+        }
+      ],
+      "title": "Combine chunks 1 + 2 + 3 + 4 + 5",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 315,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        7325.949834615884,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 114,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 577
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 578
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 579
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 580
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 581
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 582
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 583
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 584
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 587
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 585
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 586
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 588
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            590
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            591
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            592
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            594
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            598
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            610
+          ]
+        }
+      ],
+      "title": "Chunk 6 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 316,
+      "type": "KSampler",
+      "pos": [
+        7800.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 115,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 589
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 590
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 591
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 592
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            593
+          ]
+        }
+      ],
+      "title": "Chunk 6 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 317,
+      "type": "TrimVideoLatent",
+      "pos": [
+        8247.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 116,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 593
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 594
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            595
+          ]
+        }
+      ],
+      "title": "Chunk 6 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 318,
+      "type": "VAEDecode",
+      "pos": [
+        8566.98202157578,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 117,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 595
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 596
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            597
+          ]
+        }
+      ],
+      "title": "Chunk 6 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 319,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        8835.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 118,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 597
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 598
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            609,
+            754
+          ]
+        }
+      ],
+      "title": "Chunk 6 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 320,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        8225.949834615883,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 119,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 599
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 600
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 601
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 602
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 603
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 604
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 605
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 606
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 609
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 607
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 608
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 610
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            612
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            613
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            614
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            616
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            620
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            632
+          ]
+        }
+      ],
+      "title": "Chunk 7 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 321,
+      "type": "KSampler",
+      "pos": [
+        8700.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 120,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 611
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 612
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 613
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 614
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            615
+          ]
+        }
+      ],
+      "title": "Chunk 7 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 322,
+      "type": "TrimVideoLatent",
+      "pos": [
+        9147.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 121,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 615
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 616
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            617
+          ]
+        }
+      ],
+      "title": "Chunk 7 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 323,
+      "type": "VAEDecode",
+      "pos": [
+        9466.98202157578,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 122,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 617
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 618
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            619
+          ]
+        }
+      ],
+      "title": "Chunk 7 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 324,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        9735.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 123,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 619
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 620
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            631,
+            756
+          ]
+        }
+      ],
+      "title": "Chunk 7 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 325,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        9125.949834615883,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 124,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 621
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 622
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 623
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 624
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 625
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 626
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 627
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 628
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 631
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 629
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 630
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 632
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            634
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            635
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            636
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            638
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            642
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            654
+          ]
+        }
+      ],
+      "title": "Chunk 8 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 326,
+      "type": "KSampler",
+      "pos": [
+        9600.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 125,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 633
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 634
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 635
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 636
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            637
+          ]
+        }
+      ],
+      "title": "Chunk 8 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 327,
+      "type": "TrimVideoLatent",
+      "pos": [
+        10047.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 126,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 637
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 638
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            639
+          ]
+        }
+      ],
+      "title": "Chunk 8 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 328,
+      "type": "VAEDecode",
+      "pos": [
+        10366.98202157578,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 127,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 639
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 640
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            641
+          ]
+        }
+      ],
+      "title": "Chunk 8 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 329,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        10635.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 128,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 641
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 642
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            653,
+            758
+          ]
+        }
+      ],
+      "title": "Chunk 8 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 330,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        10025.949834615883,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 129,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 643
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 644
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 645
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 646
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 647
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 648
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 649
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 650
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 653
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 651
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 652
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 654
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            656
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            657
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            658
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            660
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            664
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            676
+          ]
+        }
+      ],
+      "title": "Chunk 9 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 331,
+      "type": "KSampler",
+      "pos": [
+        10500.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 130,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 655
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 656
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 657
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 658
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            659
+          ]
+        }
+      ],
+      "title": "Chunk 9 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 332,
+      "type": "TrimVideoLatent",
+      "pos": [
+        10947.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 131,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 659
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 660
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            661
+          ]
+        }
+      ],
+      "title": "Chunk 9 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 333,
+      "type": "VAEDecode",
+      "pos": [
+        11266.98202157578,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 132,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 661
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 662
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            663
+          ]
+        }
+      ],
+      "title": "Chunk 9 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 334,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        11535.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 133,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 663
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 664
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            675,
+            760
+          ]
+        }
+      ],
+      "title": "Chunk 9 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 335,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        10925.949834615883,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 134,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 665
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 666
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 667
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 668
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 669
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 670
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 671
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 672
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 675
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 673
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 674
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 676
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            678
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            679
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            680
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            682
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            686
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            698
+          ]
+        }
+      ],
+      "title": "Chunk 10 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 336,
+      "type": "KSampler",
+      "pos": [
+        11400.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 135,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 677
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 678
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 679
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 680
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            681
+          ]
+        }
+      ],
+      "title": "Chunk 10 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 337,
+      "type": "TrimVideoLatent",
+      "pos": [
+        11847.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 136,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 681
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 682
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            683
+          ]
+        }
+      ],
+      "title": "Chunk 10 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 338,
+      "type": "VAEDecode",
+      "pos": [
+        12166.98202157578,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 137,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 683
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 684
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            685
+          ]
+        }
+      ],
+      "title": "Chunk 10 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 339,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        12435.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 138,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 685
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 686
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            697,
+            762
+          ]
+        }
+      ],
+      "title": "Chunk 10 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 340,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        11825.949834615883,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 139,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 687
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 688
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 689
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 690
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 691
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 692
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 693
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 694
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 697
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 695
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 696
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 698
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            700
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            701
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            702
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            704
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            708
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            720
+          ]
+        }
+      ],
+      "title": "Chunk 11 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 341,
+      "type": "KSampler",
+      "pos": [
+        12300.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 140,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 699
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 700
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 701
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 702
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            703
+          ]
+        }
+      ],
+      "title": "Chunk 11 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 342,
+      "type": "TrimVideoLatent",
+      "pos": [
+        12747.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 141,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 703
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 704
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            705
+          ]
+        }
+      ],
+      "title": "Chunk 11 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 343,
+      "type": "VAEDecode",
+      "pos": [
+        13066.98202157578,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 142,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 705
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 706
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            707
+          ]
+        }
+      ],
+      "title": "Chunk 11 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 344,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        13335.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 143,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 707
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 708
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            719,
+            764
+          ]
+        }
+      ],
+      "title": "Chunk 11 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 345,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        12725.949834615883,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 144,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 709
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 710
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 711
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 712
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 713
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 714
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 715
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 716
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 719
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 717
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 718
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 720
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            722
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            723
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            724
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            726
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            730
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": [
+            742
+          ]
+        }
+      ],
+      "title": "Chunk 12 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 346,
+      "type": "KSampler",
+      "pos": [
+        13200.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 145,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 721
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 722
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 723
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 724
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            725
+          ]
+        }
+      ],
+      "title": "Chunk 12 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 347,
+      "type": "TrimVideoLatent",
+      "pos": [
+        13647.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 146,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 725
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 726
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            727
+          ]
+        }
+      ],
+      "title": "Chunk 12 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 348,
+      "type": "VAEDecode",
+      "pos": [
+        13966.98202157578,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 147,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 727
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 728
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            729
+          ]
+        }
+      ],
+      "title": "Chunk 12 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 349,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        14235.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 148,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 729
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 730
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            741,
+            766
+          ]
+        }
+      ],
+      "title": "Chunk 12 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 350,
+      "type": "ComfyEverAnimate",
+      "pos": [
+        13625.949834615883,
+        -1178.8643687861063
+      ],
+      "size": [
+        330,
+        520
+      ],
+      "flags": {},
+      "order": 149,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 731
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 732
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 733
+        },
+        {
+          "name": "clip_vision_output",
+          "shape": 7,
+          "type": "CLIP_VISION_OUTPUT",
+          "link": null
+        },
+        {
+          "name": "reference_image",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 734
+        },
+        {
+          "name": "face_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 735
+        },
+        {
+          "name": "pose_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 736
+        },
+        {
+          "name": "background_video",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 737
+        },
+        {
+          "name": "character_mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 738
+        },
+        {
+          "name": "continue_motion",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 741
+        },
+        {
+          "name": "prev_samples",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "video_anchor_latent",
+          "shape": 7,
+          "type": "LATENT",
+          "link": null
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 739
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 740
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "widget": {
+            "name": "video_frame_offset"
+          },
+          "link": 742
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            744
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            745
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            746
+          ]
+        },
+        {
+          "name": "trim_latent",
+          "type": "INT",
+          "links": [
+            748
+          ]
+        },
+        {
+          "name": "trim_image",
+          "type": "INT",
+          "links": [
+            752
+          ]
+        },
+        {
+          "name": "video_frame_offset",
+          "type": "INT",
+          "links": []
+        }
+      ],
+      "title": "Chunk 13 - Comfy EverAnimate",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimate",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        832,
+        480,
+        81,
+        1,
+        4,
+        1,
+        0,
+        1.0,
+        1.0,
+        1.0,
+        5
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 351,
+      "type": "KSampler",
+      "pos": [
+        14100.64137802935,
+        -1271.3537474149991
+      ],
+      "size": [
+        315,
+        285
+      ],
+      "flags": {},
+      "order": 150,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 743
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 744
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 745
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 746
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            747
+          ]
+        }
+      ],
+      "title": "Chunk 13 - Native KSampler 4 Step",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "fixed",
+        4,
+        1,
+        "lcm",
+        "normal",
+        1
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 352,
+      "type": "TrimVideoLatent",
+      "pos": [
+        14547.673117681865,
+        -978.7899136784949
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 151,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 747
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 748
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            749
+          ]
+        }
+      ],
+      "title": "Chunk 13 - Trim Anchor Latents",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "TrimVideoLatent"
+      },
+      "widgets_values": [
+        0
+      ]
+    },
+    {
+      "id": 353,
+      "type": "VAEDecode",
+      "pos": [
+        14866.98202157578,
+        -876.5878396188018
+      ],
+      "size": [
+        237.608984375,
+        70
+      ],
+      "flags": {},
+      "order": 152,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 749
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 750
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            751
+          ]
+        }
+      ],
+      "title": "Chunk 13 - Native VAE Decode",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 354,
+      "type": "ComfyEverAnimateTrimImages",
+      "pos": [
+        15135.733311814605,
+        -743.0927941584137
+      ],
+      "size": [
+        285,
+        95
+      ],
+      "flags": {},
+      "order": 153,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 751
+        },
+        {
+          "name": "trim_amount",
+          "type": "INT",
+          "widget": {
+            "name": "trim_amount"
+          },
+          "link": 752
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            768
+          ]
+        }
+      ],
+      "title": "Chunk 13 - Trim Duplicate Frames",
+      "properties": {
+        "Node name for S&R": "ComfyEverAnimateTrimImages",
+        "cnr_id": "Comfy-EverAnimate"
+      },
+      "widgets_values": [
+        0
+      ],
+      "color": "#223",
+      "bgcolor": "#354"
+    },
+    {
+      "id": 355,
+      "type": "ImageBatch",
+      "pos": [
+        8850,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 154,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 753
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 754
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            755
+          ]
+        }
+      ],
+      "title": "Combine chunks 1-6",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 356,
+      "type": "ImageBatch",
+      "pos": [
+        9750,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 155,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 755
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 756
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            757
+          ]
+        }
+      ],
+      "title": "Combine chunks 1-7",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 357,
+      "type": "ImageBatch",
+      "pos": [
+        10650,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 156,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 757
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 758
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            759
+          ]
+        }
+      ],
+      "title": "Combine chunks 1-8",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 358,
+      "type": "ImageBatch",
+      "pos": [
+        11550,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 157,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 759
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 760
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            761
+          ]
+        }
+      ],
+      "title": "Combine chunks 1-9",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 359,
+      "type": "ImageBatch",
+      "pos": [
+        12450,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 158,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 761
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 762
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            763
+          ]
+        }
+      ],
+      "title": "Combine chunks 1-10",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 360,
+      "type": "ImageBatch",
+      "pos": [
+        13350,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 159,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 763
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 764
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            765
+          ]
+        }
+      ],
+      "title": "Combine chunks 1-11",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 361,
+      "type": "ImageBatch",
+      "pos": [
+        14250,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 160,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 765
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 766
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            767
+          ]
+        }
+      ],
+      "title": "Combine chunks 1-12",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 362,
+      "type": "ImageBatch",
+      "pos": [
+        15150,
+        -455
+      ],
+      "size": [
+        210,
+        70
+      ],
+      "flags": {},
+      "order": 161,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 767
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": 768
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            769
+          ]
+        }
+      ],
+      "title": "Combine chunks 1-13",
       "properties": {
         "cnr_id": "comfy-core",
         "ver": "0.22.0",
@@ -5085,19 +9895,11 @@
       "IMAGE"
     ],
     [
-      446,
-      277,
-      0,
-      278,
-      9,
-      "LATENT"
-    ],
-    [
       447,
       282,
       5,
       278,
-      13,
+      14,
       "INT"
     ],
     [
@@ -5417,7 +10219,7 @@
       289,
       0,
       282,
-      11,
+      12,
       "INT"
     ],
     [
@@ -5425,7 +10227,7 @@
       290,
       0,
       282,
-      12,
+      13,
       "INT"
     ],
     [
@@ -5433,7 +10235,7 @@
       289,
       0,
       278,
-      11,
+      12,
       "INT"
     ],
     [
@@ -5441,7 +10243,7 @@
       290,
       0,
       278,
-      12,
+      13,
       "INT"
     ],
     [
@@ -5451,14 +10253,6 @@
       288,
       1,
       "AUDIO"
-    ],
-    [
-      493,
-      284,
-      0,
-      294,
-      0,
-      "IMAGE"
     ],
     [
       494,
@@ -5493,8 +10287,2144 @@
       "IMAGE"
     ],
     [
-      500,
+      501,
+      283,
+      0,
+      278,
+      9,
+      "IMAGE"
+    ],
+    [
+      502,
+      272,
+      0,
+      282,
+      9,
+      "IMAGE"
+    ],
+    [
+      503,
+      283,
+      0,
+      294,
+      0,
+      "IMAGE"
+    ],
+    [
+      504,
+      269,
+      0,
+      297,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      505,
+      270,
+      0,
+      297,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      506,
+      271,
+      0,
+      297,
+      2,
+      "VAE"
+    ],
+    [
+      507,
+      272,
+      0,
+      297,
+      4,
+      "IMAGE"
+    ],
+    [
+      508,
+      273,
+      0,
+      297,
+      5,
+      "IMAGE"
+    ],
+    [
+      509,
+      274,
+      0,
+      297,
+      6,
+      "IMAGE"
+    ],
+    [
+      510,
+      275,
+      0,
+      297,
+      7,
+      "IMAGE"
+    ],
+    [
+      511,
+      276,
+      0,
+      297,
+      8,
+      "MASK"
+    ],
+    [
+      512,
+      289,
+      0,
+      297,
+      12,
+      "INT"
+    ],
+    [
+      513,
+      290,
+      0,
+      297,
+      13,
+      "INT"
+    ],
+    [
+      514,
+      286,
+      0,
+      297,
+      9,
+      "IMAGE"
+    ],
+    [
+      515,
+      278,
+      5,
+      297,
+      14,
+      "INT"
+    ],
+    [
+      516,
+      268,
+      0,
+      298,
+      0,
+      "MODEL"
+    ],
+    [
+      517,
+      297,
+      0,
+      298,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      518,
+      297,
+      1,
+      298,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      519,
+      297,
+      2,
+      298,
+      3,
+      "LATENT"
+    ],
+    [
+      520,
+      298,
+      0,
+      299,
+      0,
+      "LATENT"
+    ],
+    [
+      521,
+      297,
+      3,
+      299,
+      1,
+      "INT"
+    ],
+    [
+      522,
+      299,
+      0,
+      300,
+      0,
+      "LATENT"
+    ],
+    [
+      523,
+      271,
+      0,
+      300,
+      1,
+      "VAE"
+    ],
+    [
+      524,
+      300,
+      0,
+      301,
+      0,
+      "IMAGE"
+    ],
+    [
+      525,
+      297,
+      4,
+      301,
+      1,
+      "INT"
+    ],
+    [
+      526,
+      269,
+      0,
+      302,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      527,
+      270,
+      0,
+      302,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      528,
+      271,
+      0,
+      302,
+      2,
+      "VAE"
+    ],
+    [
+      529,
+      272,
+      0,
+      302,
+      4,
+      "IMAGE"
+    ],
+    [
+      530,
+      273,
+      0,
+      302,
+      5,
+      "IMAGE"
+    ],
+    [
+      531,
+      274,
+      0,
+      302,
+      6,
+      "IMAGE"
+    ],
+    [
+      532,
+      275,
+      0,
+      302,
+      7,
+      "IMAGE"
+    ],
+    [
+      533,
+      276,
+      0,
+      302,
+      8,
+      "MASK"
+    ],
+    [
+      534,
+      289,
+      0,
+      302,
+      12,
+      "INT"
+    ],
+    [
+      535,
+      290,
+      0,
+      302,
+      13,
+      "INT"
+    ],
+    [
+      536,
+      301,
+      0,
+      302,
+      9,
+      "IMAGE"
+    ],
+    [
+      537,
+      297,
+      5,
+      302,
+      14,
+      "INT"
+    ],
+    [
+      538,
+      268,
+      0,
+      303,
+      0,
+      "MODEL"
+    ],
+    [
+      539,
+      302,
+      0,
+      303,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      540,
+      302,
+      1,
+      303,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      541,
+      302,
+      2,
+      303,
+      3,
+      "LATENT"
+    ],
+    [
+      542,
+      303,
+      0,
+      304,
+      0,
+      "LATENT"
+    ],
+    [
+      543,
+      302,
+      3,
+      304,
+      1,
+      "INT"
+    ],
+    [
+      544,
+      304,
+      0,
+      305,
+      0,
+      "LATENT"
+    ],
+    [
+      545,
+      271,
+      0,
+      305,
+      1,
+      "VAE"
+    ],
+    [
+      546,
+      305,
+      0,
+      306,
+      0,
+      "IMAGE"
+    ],
+    [
+      547,
+      302,
+      4,
+      306,
+      1,
+      "INT"
+    ],
+    [
+      548,
+      269,
+      0,
+      307,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      549,
+      270,
+      0,
+      307,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      550,
+      271,
+      0,
+      307,
+      2,
+      "VAE"
+    ],
+    [
+      551,
+      272,
+      0,
+      307,
+      4,
+      "IMAGE"
+    ],
+    [
+      552,
+      273,
+      0,
+      307,
+      5,
+      "IMAGE"
+    ],
+    [
+      553,
+      274,
+      0,
+      307,
+      6,
+      "IMAGE"
+    ],
+    [
+      554,
+      275,
+      0,
+      307,
+      7,
+      "IMAGE"
+    ],
+    [
+      555,
+      276,
+      0,
+      307,
+      8,
+      "MASK"
+    ],
+    [
+      556,
+      289,
+      0,
+      307,
+      12,
+      "INT"
+    ],
+    [
+      557,
+      290,
+      0,
+      307,
+      13,
+      "INT"
+    ],
+    [
+      558,
+      306,
+      0,
+      307,
+      9,
+      "IMAGE"
+    ],
+    [
+      559,
+      302,
+      5,
+      307,
+      14,
+      "INT"
+    ],
+    [
+      560,
+      268,
+      0,
+      308,
+      0,
+      "MODEL"
+    ],
+    [
+      561,
+      307,
+      0,
+      308,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      562,
+      307,
+      1,
+      308,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      563,
+      307,
+      2,
+      308,
+      3,
+      "LATENT"
+    ],
+    [
+      564,
+      308,
+      0,
+      309,
+      0,
+      "LATENT"
+    ],
+    [
+      565,
+      307,
+      3,
+      309,
+      1,
+      "INT"
+    ],
+    [
+      566,
+      309,
+      0,
+      310,
+      0,
+      "LATENT"
+    ],
+    [
+      567,
+      271,
+      0,
+      310,
+      1,
+      "VAE"
+    ],
+    [
+      568,
+      310,
+      0,
+      311,
+      0,
+      "IMAGE"
+    ],
+    [
+      569,
+      307,
+      4,
+      311,
+      1,
+      "INT"
+    ],
+    [
+      570,
       287,
+      0,
+      312,
+      0,
+      "IMAGE"
+    ],
+    [
+      571,
+      301,
+      0,
+      312,
+      1,
+      "IMAGE"
+    ],
+    [
+      572,
+      312,
+      0,
+      313,
+      0,
+      "IMAGE"
+    ],
+    [
+      573,
+      306,
+      0,
+      313,
+      1,
+      "IMAGE"
+    ],
+    [
+      574,
+      313,
+      0,
+      314,
+      0,
+      "IMAGE"
+    ],
+    [
+      575,
+      311,
+      0,
+      314,
+      1,
+      "IMAGE"
+    ],
+    [
+      577,
+      269,
+      0,
+      315,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      578,
+      270,
+      0,
+      315,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      579,
+      271,
+      0,
+      315,
+      2,
+      "VAE"
+    ],
+    [
+      580,
+      272,
+      0,
+      315,
+      4,
+      "IMAGE"
+    ],
+    [
+      581,
+      273,
+      0,
+      315,
+      5,
+      "IMAGE"
+    ],
+    [
+      582,
+      274,
+      0,
+      315,
+      6,
+      "IMAGE"
+    ],
+    [
+      583,
+      275,
+      0,
+      315,
+      7,
+      "IMAGE"
+    ],
+    [
+      584,
+      276,
+      0,
+      315,
+      8,
+      "MASK"
+    ],
+    [
+      585,
+      289,
+      0,
+      315,
+      12,
+      "INT"
+    ],
+    [
+      586,
+      290,
+      0,
+      315,
+      13,
+      "INT"
+    ],
+    [
+      587,
+      311,
+      0,
+      315,
+      9,
+      "IMAGE"
+    ],
+    [
+      588,
+      307,
+      5,
+      315,
+      14,
+      "INT"
+    ],
+    [
+      589,
+      268,
+      0,
+      316,
+      0,
+      "MODEL"
+    ],
+    [
+      590,
+      315,
+      0,
+      316,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      591,
+      315,
+      1,
+      316,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      592,
+      315,
+      2,
+      316,
+      3,
+      "LATENT"
+    ],
+    [
+      593,
+      316,
+      0,
+      317,
+      0,
+      "LATENT"
+    ],
+    [
+      594,
+      315,
+      3,
+      317,
+      1,
+      "INT"
+    ],
+    [
+      595,
+      317,
+      0,
+      318,
+      0,
+      "LATENT"
+    ],
+    [
+      596,
+      271,
+      0,
+      318,
+      1,
+      "VAE"
+    ],
+    [
+      597,
+      318,
+      0,
+      319,
+      0,
+      "IMAGE"
+    ],
+    [
+      598,
+      315,
+      4,
+      319,
+      1,
+      "INT"
+    ],
+    [
+      599,
+      269,
+      0,
+      320,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      600,
+      270,
+      0,
+      320,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      601,
+      271,
+      0,
+      320,
+      2,
+      "VAE"
+    ],
+    [
+      602,
+      272,
+      0,
+      320,
+      4,
+      "IMAGE"
+    ],
+    [
+      603,
+      273,
+      0,
+      320,
+      5,
+      "IMAGE"
+    ],
+    [
+      604,
+      274,
+      0,
+      320,
+      6,
+      "IMAGE"
+    ],
+    [
+      605,
+      275,
+      0,
+      320,
+      7,
+      "IMAGE"
+    ],
+    [
+      606,
+      276,
+      0,
+      320,
+      8,
+      "MASK"
+    ],
+    [
+      607,
+      289,
+      0,
+      320,
+      12,
+      "INT"
+    ],
+    [
+      608,
+      290,
+      0,
+      320,
+      13,
+      "INT"
+    ],
+    [
+      609,
+      319,
+      0,
+      320,
+      9,
+      "IMAGE"
+    ],
+    [
+      610,
+      315,
+      5,
+      320,
+      14,
+      "INT"
+    ],
+    [
+      611,
+      268,
+      0,
+      321,
+      0,
+      "MODEL"
+    ],
+    [
+      612,
+      320,
+      0,
+      321,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      613,
+      320,
+      1,
+      321,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      614,
+      320,
+      2,
+      321,
+      3,
+      "LATENT"
+    ],
+    [
+      615,
+      321,
+      0,
+      322,
+      0,
+      "LATENT"
+    ],
+    [
+      616,
+      320,
+      3,
+      322,
+      1,
+      "INT"
+    ],
+    [
+      617,
+      322,
+      0,
+      323,
+      0,
+      "LATENT"
+    ],
+    [
+      618,
+      271,
+      0,
+      323,
+      1,
+      "VAE"
+    ],
+    [
+      619,
+      323,
+      0,
+      324,
+      0,
+      "IMAGE"
+    ],
+    [
+      620,
+      320,
+      4,
+      324,
+      1,
+      "INT"
+    ],
+    [
+      621,
+      269,
+      0,
+      325,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      622,
+      270,
+      0,
+      325,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      623,
+      271,
+      0,
+      325,
+      2,
+      "VAE"
+    ],
+    [
+      624,
+      272,
+      0,
+      325,
+      4,
+      "IMAGE"
+    ],
+    [
+      625,
+      273,
+      0,
+      325,
+      5,
+      "IMAGE"
+    ],
+    [
+      626,
+      274,
+      0,
+      325,
+      6,
+      "IMAGE"
+    ],
+    [
+      627,
+      275,
+      0,
+      325,
+      7,
+      "IMAGE"
+    ],
+    [
+      628,
+      276,
+      0,
+      325,
+      8,
+      "MASK"
+    ],
+    [
+      629,
+      289,
+      0,
+      325,
+      12,
+      "INT"
+    ],
+    [
+      630,
+      290,
+      0,
+      325,
+      13,
+      "INT"
+    ],
+    [
+      631,
+      324,
+      0,
+      325,
+      9,
+      "IMAGE"
+    ],
+    [
+      632,
+      320,
+      5,
+      325,
+      14,
+      "INT"
+    ],
+    [
+      633,
+      268,
+      0,
+      326,
+      0,
+      "MODEL"
+    ],
+    [
+      634,
+      325,
+      0,
+      326,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      635,
+      325,
+      1,
+      326,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      636,
+      325,
+      2,
+      326,
+      3,
+      "LATENT"
+    ],
+    [
+      637,
+      326,
+      0,
+      327,
+      0,
+      "LATENT"
+    ],
+    [
+      638,
+      325,
+      3,
+      327,
+      1,
+      "INT"
+    ],
+    [
+      639,
+      327,
+      0,
+      328,
+      0,
+      "LATENT"
+    ],
+    [
+      640,
+      271,
+      0,
+      328,
+      1,
+      "VAE"
+    ],
+    [
+      641,
+      328,
+      0,
+      329,
+      0,
+      "IMAGE"
+    ],
+    [
+      642,
+      325,
+      4,
+      329,
+      1,
+      "INT"
+    ],
+    [
+      643,
+      269,
+      0,
+      330,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      644,
+      270,
+      0,
+      330,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      645,
+      271,
+      0,
+      330,
+      2,
+      "VAE"
+    ],
+    [
+      646,
+      272,
+      0,
+      330,
+      4,
+      "IMAGE"
+    ],
+    [
+      647,
+      273,
+      0,
+      330,
+      5,
+      "IMAGE"
+    ],
+    [
+      648,
+      274,
+      0,
+      330,
+      6,
+      "IMAGE"
+    ],
+    [
+      649,
+      275,
+      0,
+      330,
+      7,
+      "IMAGE"
+    ],
+    [
+      650,
+      276,
+      0,
+      330,
+      8,
+      "MASK"
+    ],
+    [
+      651,
+      289,
+      0,
+      330,
+      12,
+      "INT"
+    ],
+    [
+      652,
+      290,
+      0,
+      330,
+      13,
+      "INT"
+    ],
+    [
+      653,
+      329,
+      0,
+      330,
+      9,
+      "IMAGE"
+    ],
+    [
+      654,
+      325,
+      5,
+      330,
+      14,
+      "INT"
+    ],
+    [
+      655,
+      268,
+      0,
+      331,
+      0,
+      "MODEL"
+    ],
+    [
+      656,
+      330,
+      0,
+      331,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      657,
+      330,
+      1,
+      331,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      658,
+      330,
+      2,
+      331,
+      3,
+      "LATENT"
+    ],
+    [
+      659,
+      331,
+      0,
+      332,
+      0,
+      "LATENT"
+    ],
+    [
+      660,
+      330,
+      3,
+      332,
+      1,
+      "INT"
+    ],
+    [
+      661,
+      332,
+      0,
+      333,
+      0,
+      "LATENT"
+    ],
+    [
+      662,
+      271,
+      0,
+      333,
+      1,
+      "VAE"
+    ],
+    [
+      663,
+      333,
+      0,
+      334,
+      0,
+      "IMAGE"
+    ],
+    [
+      664,
+      330,
+      4,
+      334,
+      1,
+      "INT"
+    ],
+    [
+      665,
+      269,
+      0,
+      335,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      666,
+      270,
+      0,
+      335,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      667,
+      271,
+      0,
+      335,
+      2,
+      "VAE"
+    ],
+    [
+      668,
+      272,
+      0,
+      335,
+      4,
+      "IMAGE"
+    ],
+    [
+      669,
+      273,
+      0,
+      335,
+      5,
+      "IMAGE"
+    ],
+    [
+      670,
+      274,
+      0,
+      335,
+      6,
+      "IMAGE"
+    ],
+    [
+      671,
+      275,
+      0,
+      335,
+      7,
+      "IMAGE"
+    ],
+    [
+      672,
+      276,
+      0,
+      335,
+      8,
+      "MASK"
+    ],
+    [
+      673,
+      289,
+      0,
+      335,
+      12,
+      "INT"
+    ],
+    [
+      674,
+      290,
+      0,
+      335,
+      13,
+      "INT"
+    ],
+    [
+      675,
+      334,
+      0,
+      335,
+      9,
+      "IMAGE"
+    ],
+    [
+      676,
+      330,
+      5,
+      335,
+      14,
+      "INT"
+    ],
+    [
+      677,
+      268,
+      0,
+      336,
+      0,
+      "MODEL"
+    ],
+    [
+      678,
+      335,
+      0,
+      336,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      679,
+      335,
+      1,
+      336,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      680,
+      335,
+      2,
+      336,
+      3,
+      "LATENT"
+    ],
+    [
+      681,
+      336,
+      0,
+      337,
+      0,
+      "LATENT"
+    ],
+    [
+      682,
+      335,
+      3,
+      337,
+      1,
+      "INT"
+    ],
+    [
+      683,
+      337,
+      0,
+      338,
+      0,
+      "LATENT"
+    ],
+    [
+      684,
+      271,
+      0,
+      338,
+      1,
+      "VAE"
+    ],
+    [
+      685,
+      338,
+      0,
+      339,
+      0,
+      "IMAGE"
+    ],
+    [
+      686,
+      335,
+      4,
+      339,
+      1,
+      "INT"
+    ],
+    [
+      687,
+      269,
+      0,
+      340,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      688,
+      270,
+      0,
+      340,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      689,
+      271,
+      0,
+      340,
+      2,
+      "VAE"
+    ],
+    [
+      690,
+      272,
+      0,
+      340,
+      4,
+      "IMAGE"
+    ],
+    [
+      691,
+      273,
+      0,
+      340,
+      5,
+      "IMAGE"
+    ],
+    [
+      692,
+      274,
+      0,
+      340,
+      6,
+      "IMAGE"
+    ],
+    [
+      693,
+      275,
+      0,
+      340,
+      7,
+      "IMAGE"
+    ],
+    [
+      694,
+      276,
+      0,
+      340,
+      8,
+      "MASK"
+    ],
+    [
+      695,
+      289,
+      0,
+      340,
+      12,
+      "INT"
+    ],
+    [
+      696,
+      290,
+      0,
+      340,
+      13,
+      "INT"
+    ],
+    [
+      697,
+      339,
+      0,
+      340,
+      9,
+      "IMAGE"
+    ],
+    [
+      698,
+      335,
+      5,
+      340,
+      14,
+      "INT"
+    ],
+    [
+      699,
+      268,
+      0,
+      341,
+      0,
+      "MODEL"
+    ],
+    [
+      700,
+      340,
+      0,
+      341,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      701,
+      340,
+      1,
+      341,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      702,
+      340,
+      2,
+      341,
+      3,
+      "LATENT"
+    ],
+    [
+      703,
+      341,
+      0,
+      342,
+      0,
+      "LATENT"
+    ],
+    [
+      704,
+      340,
+      3,
+      342,
+      1,
+      "INT"
+    ],
+    [
+      705,
+      342,
+      0,
+      343,
+      0,
+      "LATENT"
+    ],
+    [
+      706,
+      271,
+      0,
+      343,
+      1,
+      "VAE"
+    ],
+    [
+      707,
+      343,
+      0,
+      344,
+      0,
+      "IMAGE"
+    ],
+    [
+      708,
+      340,
+      4,
+      344,
+      1,
+      "INT"
+    ],
+    [
+      709,
+      269,
+      0,
+      345,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      710,
+      270,
+      0,
+      345,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      711,
+      271,
+      0,
+      345,
+      2,
+      "VAE"
+    ],
+    [
+      712,
+      272,
+      0,
+      345,
+      4,
+      "IMAGE"
+    ],
+    [
+      713,
+      273,
+      0,
+      345,
+      5,
+      "IMAGE"
+    ],
+    [
+      714,
+      274,
+      0,
+      345,
+      6,
+      "IMAGE"
+    ],
+    [
+      715,
+      275,
+      0,
+      345,
+      7,
+      "IMAGE"
+    ],
+    [
+      716,
+      276,
+      0,
+      345,
+      8,
+      "MASK"
+    ],
+    [
+      717,
+      289,
+      0,
+      345,
+      12,
+      "INT"
+    ],
+    [
+      718,
+      290,
+      0,
+      345,
+      13,
+      "INT"
+    ],
+    [
+      719,
+      344,
+      0,
+      345,
+      9,
+      "IMAGE"
+    ],
+    [
+      720,
+      340,
+      5,
+      345,
+      14,
+      "INT"
+    ],
+    [
+      721,
+      268,
+      0,
+      346,
+      0,
+      "MODEL"
+    ],
+    [
+      722,
+      345,
+      0,
+      346,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      723,
+      345,
+      1,
+      346,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      724,
+      345,
+      2,
+      346,
+      3,
+      "LATENT"
+    ],
+    [
+      725,
+      346,
+      0,
+      347,
+      0,
+      "LATENT"
+    ],
+    [
+      726,
+      345,
+      3,
+      347,
+      1,
+      "INT"
+    ],
+    [
+      727,
+      347,
+      0,
+      348,
+      0,
+      "LATENT"
+    ],
+    [
+      728,
+      271,
+      0,
+      348,
+      1,
+      "VAE"
+    ],
+    [
+      729,
+      348,
+      0,
+      349,
+      0,
+      "IMAGE"
+    ],
+    [
+      730,
+      345,
+      4,
+      349,
+      1,
+      "INT"
+    ],
+    [
+      731,
+      269,
+      0,
+      350,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      732,
+      270,
+      0,
+      350,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      733,
+      271,
+      0,
+      350,
+      2,
+      "VAE"
+    ],
+    [
+      734,
+      272,
+      0,
+      350,
+      4,
+      "IMAGE"
+    ],
+    [
+      735,
+      273,
+      0,
+      350,
+      5,
+      "IMAGE"
+    ],
+    [
+      736,
+      274,
+      0,
+      350,
+      6,
+      "IMAGE"
+    ],
+    [
+      737,
+      275,
+      0,
+      350,
+      7,
+      "IMAGE"
+    ],
+    [
+      738,
+      276,
+      0,
+      350,
+      8,
+      "MASK"
+    ],
+    [
+      739,
+      289,
+      0,
+      350,
+      12,
+      "INT"
+    ],
+    [
+      740,
+      290,
+      0,
+      350,
+      13,
+      "INT"
+    ],
+    [
+      741,
+      349,
+      0,
+      350,
+      9,
+      "IMAGE"
+    ],
+    [
+      742,
+      345,
+      5,
+      350,
+      14,
+      "INT"
+    ],
+    [
+      743,
+      268,
+      0,
+      351,
+      0,
+      "MODEL"
+    ],
+    [
+      744,
+      350,
+      0,
+      351,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      745,
+      350,
+      1,
+      351,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      746,
+      350,
+      2,
+      351,
+      3,
+      "LATENT"
+    ],
+    [
+      747,
+      351,
+      0,
+      352,
+      0,
+      "LATENT"
+    ],
+    [
+      748,
+      350,
+      3,
+      352,
+      1,
+      "INT"
+    ],
+    [
+      749,
+      352,
+      0,
+      353,
+      0,
+      "LATENT"
+    ],
+    [
+      750,
+      271,
+      0,
+      353,
+      1,
+      "VAE"
+    ],
+    [
+      751,
+      353,
+      0,
+      354,
+      0,
+      "IMAGE"
+    ],
+    [
+      752,
+      350,
+      4,
+      354,
+      1,
+      "INT"
+    ],
+    [
+      753,
+      314,
+      0,
+      355,
+      0,
+      "IMAGE"
+    ],
+    [
+      754,
+      319,
+      0,
+      355,
+      1,
+      "IMAGE"
+    ],
+    [
+      755,
+      355,
+      0,
+      356,
+      0,
+      "IMAGE"
+    ],
+    [
+      756,
+      324,
+      0,
+      356,
+      1,
+      "IMAGE"
+    ],
+    [
+      757,
+      356,
+      0,
+      357,
+      0,
+      "IMAGE"
+    ],
+    [
+      758,
+      329,
+      0,
+      357,
+      1,
+      "IMAGE"
+    ],
+    [
+      759,
+      357,
+      0,
+      358,
+      0,
+      "IMAGE"
+    ],
+    [
+      760,
+      334,
+      0,
+      358,
+      1,
+      "IMAGE"
+    ],
+    [
+      761,
+      358,
+      0,
+      359,
+      0,
+      "IMAGE"
+    ],
+    [
+      762,
+      339,
+      0,
+      359,
+      1,
+      "IMAGE"
+    ],
+    [
+      763,
+      359,
+      0,
+      360,
+      0,
+      "IMAGE"
+    ],
+    [
+      764,
+      344,
+      0,
+      360,
+      1,
+      "IMAGE"
+    ],
+    [
+      765,
+      360,
+      0,
+      361,
+      0,
+      "IMAGE"
+    ],
+    [
+      766,
+      349,
+      0,
+      361,
+      1,
+      "IMAGE"
+    ],
+    [
+      767,
+      361,
+      0,
+      362,
+      0,
+      "IMAGE"
+    ],
+    [
+      768,
+      354,
+      0,
+      362,
+      1,
+      "IMAGE"
+    ],
+    [
+      769,
+      362,
       0,
       66,
       0,
@@ -5630,8 +12560,8 @@
         "version": 1,
         "state": {
           "lastGroupId": 12,
-          "lastNodeId": 296,
-          "lastLinkId": 500,
+          "lastNodeId": 362,
+          "lastLinkId": 769,
           "lastRerouteId": 0
         },
         "revision": 0,
