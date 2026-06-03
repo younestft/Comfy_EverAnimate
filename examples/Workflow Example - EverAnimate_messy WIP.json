@@ -1,8 +1,8 @@
 {
   "id": "bd4dedbe-f1d6-4fa3-a945-02e24d21c764",
   "revision": 0,
-  "last_node_id": 362,
-  "last_link_id": 769,
+  "last_node_id": 375,
+  "last_link_id": 782,
   "nodes": [
     {
       "id": 137,
@@ -2857,7 +2857,8 @@
           "links": [
             470,
             501,
-            503
+            503,
+            770
           ]
         }
       ],
@@ -3441,7 +3442,8 @@
           "type": "IMAGE",
           "links": [
             471,
-            514
+            514,
+            771
           ]
         }
       ],
@@ -5135,7 +5137,8 @@
           "type": "IMAGE",
           "links": [
             536,
-            571
+            571,
+            772
           ]
         }
       ],
@@ -5515,7 +5518,8 @@
           "type": "IMAGE",
           "links": [
             558,
-            573
+            573,
+            773
           ]
         }
       ],
@@ -5895,7 +5899,8 @@
           "type": "IMAGE",
           "links": [
             575,
-            587
+            587,
+            774
           ]
         }
       ],
@@ -6404,7 +6409,8 @@
           "type": "IMAGE",
           "links": [
             609,
-            754
+            754,
+            775
           ]
         }
       ],
@@ -6784,7 +6790,8 @@
           "type": "IMAGE",
           "links": [
             631,
-            756
+            756,
+            776
           ]
         }
       ],
@@ -7164,7 +7171,8 @@
           "type": "IMAGE",
           "links": [
             653,
-            758
+            758,
+            777
           ]
         }
       ],
@@ -7544,7 +7552,8 @@
           "type": "IMAGE",
           "links": [
             675,
-            760
+            760,
+            778
           ]
         }
       ],
@@ -7924,7 +7933,8 @@
           "type": "IMAGE",
           "links": [
             697,
-            762
+            762,
+            779
           ]
         }
       ],
@@ -8304,7 +8314,8 @@
           "type": "IMAGE",
           "links": [
             719,
-            764
+            764,
+            780
           ]
         }
       ],
@@ -8684,7 +8695,8 @@
           "type": "IMAGE",
           "links": [
             741,
-            766
+            766,
+            781
           ]
         }
       ],
@@ -9061,7 +9073,8 @@
           "name": "images",
           "type": "IMAGE",
           "links": [
-            768
+            768,
+            782
           ]
         }
       ],
@@ -9419,6 +9432,1020 @@
         "Node name for S&R": "ImageBatch"
       },
       "widgets_values": []
+    },
+    {
+      "id": 363,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        3384.77204042643,
+        -176.4421629755593
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 164,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 770
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_01_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_01_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_01_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_01_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 1"
+    },
+    {
+      "id": 364,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        5255.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 165,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 771
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_02_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_02_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_02_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_02_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 2"
+    },
+    {
+      "id": 365,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        6155.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 166,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 772
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_03_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_03_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_03_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_03_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 3"
+    },
+    {
+      "id": 366,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        7055.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 167,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 773
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_04_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_04_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_04_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_04_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 4"
+    },
+    {
+      "id": 367,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        7955.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 168,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 774
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_05_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_05_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_05_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_05_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 5"
+    },
+    {
+      "id": 368,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        8855.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 169,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 775
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_06_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_06_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_06_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_06_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 6"
+    },
+    {
+      "id": 369,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        9755.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 170,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 776
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_07_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_07_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_07_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_07_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 7"
+    },
+    {
+      "id": 370,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        10655.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 171,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 777
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_08_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_08_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_08_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_08_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 8"
+    },
+    {
+      "id": 371,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        11555.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 172,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 778
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_09_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_09_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_09_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_09_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 9"
+    },
+    {
+      "id": 372,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        12455.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 173,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 779
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_10_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_10_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_10_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_10_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 10"
+    },
+    {
+      "id": 373,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        13355.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 174,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 780
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_11_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_11_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_11_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_11_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 11"
+    },
+    {
+      "id": 374,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        14255.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 175,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 781
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_12_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_12_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_12_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_12_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 12"
+    },
+    {
+      "id": 375,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        15155.733311814605,
+        -483.09279415841365
+      ],
+      "size": [
+        420,
+        520
+      ],
+      "flags": {},
+      "order": 176,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 782
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "8e4d79471bf1952154768e8435a9300077b534fa",
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Comfy_EverAnimate_chunk_13_preview",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "Comfy_EverAnimate_chunk_13_preview.mp4",
+            "subfolder": "",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "Comfy_EverAnimate_chunk_13_preview.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\temp\\Comfy_EverAnimate_chunk_13_preview.mp4"
+          }
+        }
+      },
+      "title": "Preview - Chunk 13"
     }
   ],
   "links": [
@@ -12429,6 +13456,110 @@
       66,
       0,
       "IMAGE"
+    ],
+    [
+      770,
+      283,
+      0,
+      363,
+      0,
+      "IMAGE"
+    ],
+    [
+      771,
+      286,
+      0,
+      364,
+      0,
+      "IMAGE"
+    ],
+    [
+      772,
+      301,
+      0,
+      365,
+      0,
+      "IMAGE"
+    ],
+    [
+      773,
+      306,
+      0,
+      366,
+      0,
+      "IMAGE"
+    ],
+    [
+      774,
+      311,
+      0,
+      367,
+      0,
+      "IMAGE"
+    ],
+    [
+      775,
+      319,
+      0,
+      368,
+      0,
+      "IMAGE"
+    ],
+    [
+      776,
+      324,
+      0,
+      369,
+      0,
+      "IMAGE"
+    ],
+    [
+      777,
+      329,
+      0,
+      370,
+      0,
+      "IMAGE"
+    ],
+    [
+      778,
+      334,
+      0,
+      371,
+      0,
+      "IMAGE"
+    ],
+    [
+      779,
+      339,
+      0,
+      372,
+      0,
+      "IMAGE"
+    ],
+    [
+      780,
+      344,
+      0,
+      373,
+      0,
+      "IMAGE"
+    ],
+    [
+      781,
+      349,
+      0,
+      374,
+      0,
+      "IMAGE"
+    ],
+    [
+      782,
+      354,
+      0,
+      375,
+      0,
+      "IMAGE"
     ]
   ],
   "groups": [
@@ -12560,8 +13691,8 @@
         "version": 1,
         "state": {
           "lastGroupId": 12,
-          "lastNodeId": 362,
-          "lastLinkId": 769,
+          "lastNodeId": 375,
+          "lastLinkId": 782,
           "lastRerouteId": 0
         },
         "revision": 0,
