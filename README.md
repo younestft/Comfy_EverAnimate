@@ -92,3 +92,12 @@ git clone https://github.com/younestft/Comfy_EverAnimate.git Comfy-EverAnimate
 ```
 
 This node pack is native-ComfyUI focused and does not depend on WanVideoWrapper.
+
+## Credits
+
+This node pack builds on ideas and interfaces from these projects:
+
+- [vita-epfl/EverAnimate](https://github.com/vita-epfl/EverAnimate) for the original EverAnimate research and implementation.
+- [comfy-org/comfyui](https://github.com/comfy-org/comfyui) for ComfyUI and the native WanAnimate nodes this pack integrates with.
+
+Thank you to the authors and maintainers of both projects.
