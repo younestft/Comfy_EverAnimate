@@ -1,7 +1,7 @@
 {
   "id": "bd4dedbe-f1d6-4fa3-a945-02e24d21c764",
   "revision": 0,
-  "last_node_id": 475,
+  "last_node_id": 478,
   "last_link_id": 911,
   "nodes": [
     {
@@ -18,7 +18,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 25,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -60,7 +60,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 24,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -102,7 +102,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 32,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
@@ -146,7 +146,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 34,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
@@ -184,7 +184,7 @@
         86
       ],
       "flags": {},
-      "order": 38,
+      "order": 39,
       "mode": 0,
       "inputs": [
         {
@@ -272,7 +272,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 43,
+      "order": 44,
       "mode": 0,
       "inputs": [
         {
@@ -316,7 +316,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 46,
+      "order": 47,
       "mode": 0,
       "inputs": [
         {
@@ -358,7 +358,7 @@
         82
       ],
       "flags": {},
-      "order": 51,
+      "order": 52,
       "mode": 0,
       "inputs": [
         {
@@ -437,7 +437,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 53,
+      "order": 54,
       "mode": 0,
       "inputs": [
         {
@@ -479,7 +479,7 @@
         102
       ],
       "flags": {},
-      "order": 55,
+      "order": 56,
       "mode": 0,
       "inputs": [
         {
@@ -602,7 +602,7 @@
         246
       ],
       "flags": {},
-      "order": 48,
+      "order": 49,
       "mode": 0,
       "inputs": [
         {
@@ -653,7 +653,7 @@
         1162.6666666666667
       ],
       "flags": {},
-      "order": 60,
+      "order": 61,
       "mode": 0,
       "inputs": [
         {
@@ -730,7 +730,7 @@
         1076
       ],
       "flags": {},
-      "order": 50,
+      "order": 51,
       "mode": 0,
       "inputs": [
         {
@@ -807,7 +807,7 @@
         748
       ],
       "flags": {},
-      "order": 47,
+      "order": 48,
       "mode": 0,
       "inputs": [
         {
@@ -884,7 +884,7 @@
         190
       ],
       "flags": {},
-      "order": 44,
+      "order": 45,
       "mode": 0,
       "inputs": [
         {
@@ -953,7 +953,7 @@
         186
       ],
       "flags": {},
-      "order": 40,
+      "order": 41,
       "mode": 0,
       "inputs": [
         {
@@ -1046,7 +1046,7 @@
         180
       ],
       "flags": {},
-      "order": 42,
+      "order": 43,
       "mode": 0,
       "inputs": [
         {
@@ -1109,7 +1109,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 57,
+      "order": 58,
       "mode": 0,
       "inputs": [
         {
@@ -1153,7 +1153,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 35,
+      "order": 36,
       "mode": 0,
       "inputs": [
         {
@@ -1252,7 +1252,7 @@
         246
       ],
       "flags": {},
-      "order": 36,
+      "order": 37,
       "mode": 0,
       "inputs": [
         {
@@ -1283,7 +1283,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 28,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -1312,47 +1312,6 @@
       "bgcolor": "#533"
     },
     {
-      "id": 222,
-      "type": "CLIPTextEncode",
-      "pos": [
-        -1053.5231794259685,
-        -1389.2142910526823
-      ],
-      "size": [
-        401.0264892578125,
-        108.64210510253906
-      ],
-      "flags": {},
-      "order": 30,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 358
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            886
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.59",
-        "Node name for S&R": "CLIPTextEncode"
-      },
-      "widgets_values": [
-        "è‰²è°ƒè‰³ä¸½ï¼Œè¿‡æ›ï¼Œé™æ€ï¼Œç»†èŠ‚æ¨¡ç³Šä¸æ¸…ï¼Œå­—å¹•ï¼Œé£Žæ ¼ï¼Œä½œå“ï¼Œç”»ä½œï¼Œç”»é¢ï¼Œé™æ­¢ï¼Œæ•´ä½“å‘ç°ï¼Œæœ€å·®è´¨é‡ï¼Œä½Žè´¨é‡ï¼ŒJPEGåŽ‹ç¼©æ®‹ç•™ï¼Œä¸‘é™‹çš„ï¼Œæ®‹ç¼ºçš„ï¼Œå¤šä½™çš„æ‰‹æŒ‡ï¼Œç”»å¾—ä¸å¥½çš„æ‰‹éƒ¨ï¼Œç”»å¾—ä¸å¥½çš„è„¸éƒ¨ï¼Œç•¸å½¢çš„ï¼Œæ¯å®¹çš„ï¼Œå½¢æ€ç•¸å½¢çš„è‚¢ä½“ï¼Œæ‰‹æŒ‡èžåˆï¼Œé™æ­¢ä¸åŠ¨çš„ç”»é¢ï¼Œæ‚ä¹±çš„èƒŒæ™¯ï¼Œä¸‰æ¡è…¿ï¼ŒèƒŒæ™¯äººå¾ˆå¤šï¼Œå€’ç€èµ°ï¼Œè£¸éœ²ï¼ŒNSFW"
-      ],
-      "color": "#322",
-      "bgcolor": "#533"
-    },
-    {
       "id": 64,
       "type": "ImageResizeKJv2",
       "pos": [
@@ -1364,7 +1323,7 @@
         336
       ],
       "flags": {},
-      "order": 27,
+      "order": 28,
       "mode": 0,
       "inputs": [
         {
@@ -1450,7 +1409,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 39,
+      "order": 40,
       "mode": 0,
       "inputs": [
         {
@@ -1497,7 +1456,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 41,
+      "order": 42,
       "mode": 0,
       "inputs": [
         {
@@ -1541,7 +1500,7 @@
         58
       ],
       "flags": {},
-      "order": 37,
+      "order": 38,
       "mode": 0,
       "inputs": [
         {
@@ -1582,7 +1541,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 49,
+      "order": 50,
       "mode": 4,
       "inputs": [
         {
@@ -1657,7 +1616,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 33,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
@@ -1699,7 +1658,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 45,
+      "order": 46,
       "mode": 0,
       "inputs": [
         {
@@ -1778,7 +1737,7 @@
         226.08387405231906
       ],
       "flags": {},
-      "order": 31,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -1848,30 +1807,6 @@
       "bgcolor": "#353"
     },
     {
-      "id": 177,
-      "type": "MarkdownNote",
-      "pos": [
-        -737.446632419212,
-        -2971.373120314427
-      ],
-      "size": [
-        690,
-        310
-      ],
-      "flags": {},
-      "order": 8,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "title": "Preprocessor links",
-      "properties": {},
-      "widgets_values": [
-        "Nodes:\n\n[https://github.com/kijai/ComfyUI-WanAnimatePreprocess](https://github.com/kijai/ComfyUI-WanAnimatePreprocess)\n\nModels:\n\nYOLO:\n\n[https://huggingface.co/Wan-AI/Wan2.2-Animate-14B/blob/main/process_checkpoint/det/yolov10m.onnx](https://huggingface.co/Wan-AI/Wan2.2-Animate-14B/blob/main/process_checkpoint/det/yolov10m.onnx)\n\nViTPose\n\nLarge:\n\n[https://huggingface.co/JunkyByte/easy_ViTPose/blob/main/onnx/wholebody/vitpose-l-wholebody.onnx](https://huggingface.co/JunkyByte/easy_ViTPose/blob/main/onnx/wholebody/vitpose-l-wholebody.onnx)\n\nHuge (needs both files):\n\n[https://huggingface.co/Kijai/vitpose_comfy/blob/main/onnx/vitpose_h_wholebody_model.onnx](https://huggingface.co/Kijai/vitpose_comfy/blob/main/onnx/vitpose_h_wholebody_model.onnx)\n\n[https://huggingface.co/Kijai/vitpose_comfy/blob/main/onnx/vitpose_h_wholebody_data.bin](https://huggingface.co/Kijai/vitpose_comfy/blob/main/onnx/vitpose_h_wholebody_data.bin)"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
       "id": 63,
       "type": "VHS_LoadVideo",
       "pos": [
@@ -1883,7 +1818,7 @@
         733.0708619459925
       ],
       "flags": {},
-      "order": 26,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -1986,7 +1921,7 @@
         58
       ],
       "flags": {},
-      "order": 52,
+      "order": 53,
       "mode": 0,
       "inputs": [
         {
@@ -2027,7 +1962,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 54,
+      "order": 55,
       "mode": 0,
       "inputs": [
         {
@@ -2153,7 +2088,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 9,
+      "order": 8,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2190,7 +2125,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 10,
+      "order": 9,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2227,7 +2162,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 11,
+      "order": 10,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2264,7 +2199,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 12,
+      "order": 11,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2301,7 +2236,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 13,
+      "order": 12,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2338,7 +2273,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 14,
+      "order": 13,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2375,7 +2310,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 15,
+      "order": 14,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2412,7 +2347,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 16,
+      "order": 15,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2449,7 +2384,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 17,
+      "order": 16,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2484,7 +2419,7 @@
         106
       ],
       "flags": {},
-      "order": 18,
+      "order": 17,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2522,7 +2457,7 @@
         156.48309326171875
       ],
       "flags": {},
-      "order": 29,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -2565,7 +2500,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 19,
+      "order": 18,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2600,7 +2535,7 @@
         112.72367102438841
       ],
       "flags": {},
-      "order": 56,
+      "order": 57,
       "mode": 0,
       "inputs": [
         {
@@ -2649,7 +2584,7 @@
         150
       ],
       "flags": {},
-      "order": 58,
+      "order": 59,
       "mode": 0,
       "inputs": [
         {
@@ -2704,7 +2639,7 @@
         150
       ],
       "flags": {},
-      "order": 61,
+      "order": 62,
       "mode": 0,
       "inputs": [
         {
@@ -2759,7 +2694,7 @@
         150
       ],
       "flags": {},
-      "order": 63,
+      "order": 64,
       "mode": 0,
       "inputs": [
         {
@@ -2814,7 +2749,7 @@
         150
       ],
       "flags": {},
-      "order": 65,
+      "order": 66,
       "mode": 0,
       "inputs": [
         {
@@ -2869,7 +2804,7 @@
         106
       ],
       "flags": {},
-      "order": 69,
+      "order": 70,
       "mode": 0,
       "inputs": [
         {
@@ -2901,61 +2836,6 @@
       "bgcolor": "#4F0074"
     },
     {
-      "id": 455,
-      "type": "ComfyEverAnimateColorCorrection",
-      "pos": [
-        2573.9676185942,
-        -1480.975565550007
-      ],
-      "size": [
-        296.3375,
-        218
-      ],
-      "flags": {},
-      "order": 67,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "settings",
-          "type": "EVERANIMATE_SETTINGS",
-          "link": 904
-        },
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 905
-        },
-        {
-          "label": "reference images",
-          "name": "reference_images",
-          "type": "IMAGE",
-          "link": 888
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            877
-          ]
-        }
-      ],
-      "properties": {
-        "aux_id": "younestft/Comfy_EverAnimate",
-        "ver": "e8921fd594714e7c9be717591118a6466a7cd00a",
-        "Node name for S&R": "ComfyEverAnimateColorCorrection"
-      },
-      "widgets_values": [
-        12,
-        16,
-        "mkl_lab",
-        "per_frame",
-        0,
-        1
-      ]
-    },
-    {
       "id": 423,
       "type": "ImageScaleBy",
       "pos": [
@@ -2967,7 +2847,7 @@
         82
       ],
       "flags": {},
-      "order": 70,
+      "order": 71,
       "mode": 0,
       "inputs": [
         {
@@ -3009,7 +2889,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 20,
+      "order": 19,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -3044,7 +2924,7 @@
       "flags": {
         "allow_interaction": true
       },
-      "order": 21,
+      "order": 20,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -3063,42 +2943,6 @@
       "bgcolor": "#fff0"
     },
     {
-      "id": 223,
-      "type": "UNETLoader",
-      "pos": [
-        -2917.1940039247575,
-        -1887.9857333927853
-      ],
-      "size": [
-        516.3789672851562,
-        92.85368347167969
-      ],
-      "flags": {},
-      "order": 22,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            863
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.59",
-        "Node name for S&R": "UNETLoader"
-      },
-      "widgets_values": [
-        "Wan Animate\\Wan2_2-Animate-14B_fp8_scaled_e5m2_KJ_v2.safetensors",
-        "default"
-      ],
-      "color": "#223",
-      "bgcolor": "#335"
-    },
-    {
       "id": 475,
       "type": "Label (rgthree)",
       "pos": [
@@ -3112,7 +2956,7 @@
       "flags": {
         "allow_interaction": true
       },
-      "order": 23,
+      "order": 21,
       "mode": 0,
       "inputs": [],
       "outputs": [],
@@ -3142,7 +2986,7 @@
         1133.6411379020617
       ],
       "flags": {},
-      "order": 71,
+      "order": 72,
       "mode": 0,
       "inputs": [
         {
@@ -3197,13 +3041,13 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "Comfy_EverAnimate_Chunked_00079-audio.mp4",
+            "filename": "Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4",
             "frame_rate": 48,
-            "workflow": "Comfy_EverAnimate_Chunked_00079.png",
-            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_Chunked_00079-audio.mp4"
+            "workflow": "Comfy_EverAnimate_AIO_13_chunks_81f_00079.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4"
           }
         }
       }
@@ -3220,7 +3064,7 @@
         793.1280388216204
       ],
       "flags": {},
-      "order": 59,
+      "order": 60,
       "mode": 0,
       "inputs": [
         {
@@ -3275,13 +3119,13 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "Comfy_EverAnimate_Chunked_00079-audio.mp4",
+            "filename": "Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4",
             "frame_rate": 48,
-            "workflow": "Comfy_EverAnimate_Chunked_00079.png",
-            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_Chunked_00079-audio.mp4"
+            "workflow": "Comfy_EverAnimate_AIO_13_chunks_81f_00079.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4"
           }
         }
       }
@@ -3298,7 +3142,7 @@
         793.1280388216204
       ],
       "flags": {},
-      "order": 62,
+      "order": 63,
       "mode": 0,
       "inputs": [
         {
@@ -3353,13 +3197,13 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "Comfy_EverAnimate_Chunked_00079-audio.mp4",
+            "filename": "Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4",
             "frame_rate": 48,
-            "workflow": "Comfy_EverAnimate_Chunked_00079.png",
-            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_Chunked_00079-audio.mp4"
+            "workflow": "Comfy_EverAnimate_AIO_13_chunks_81f_00079.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4"
           }
         }
       }
@@ -3376,7 +3220,7 @@
         793.1280388216204
       ],
       "flags": {},
-      "order": 64,
+      "order": 65,
       "mode": 0,
       "inputs": [
         {
@@ -3431,13 +3275,13 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "Comfy_EverAnimate_Chunked_00079-audio.mp4",
+            "filename": "Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4",
             "frame_rate": 48,
-            "workflow": "Comfy_EverAnimate_Chunked_00079.png",
-            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_Chunked_00079-audio.mp4"
+            "workflow": "Comfy_EverAnimate_AIO_13_chunks_81f_00079.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4"
           }
         }
       }
@@ -3454,7 +3298,7 @@
         793.1280388216204
       ],
       "flags": {},
-      "order": 66,
+      "order": 67,
       "mode": 0,
       "inputs": [
         {
@@ -3509,13 +3353,13 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "Comfy_EverAnimate_Chunked_00079-audio.mp4",
+            "filename": "Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4",
             "frame_rate": 48,
-            "workflow": "Comfy_EverAnimate_Chunked_00079.png",
-            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_Chunked_00079-audio.mp4"
+            "workflow": "Comfy_EverAnimate_AIO_13_chunks_81f_00079.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4"
           }
         }
       }
@@ -3532,7 +3376,7 @@
         793.1280388216204
       ],
       "flags": {},
-      "order": 68,
+      "order": 69,
       "mode": 0,
       "inputs": [
         {
@@ -3587,16 +3431,198 @@
           "hidden": false,
           "paused": false,
           "params": {
-            "filename": "Comfy_EverAnimate_Chunked_00079-audio.mp4",
+            "filename": "Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4",
             "subfolder": "",
             "type": "output",
             "format": "video/h264-mp4",
             "frame_rate": 48,
-            "workflow": "Comfy_EverAnimate_Chunked_00079.png",
-            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_Chunked_00079-audio.mp4"
+            "workflow": "Comfy_EverAnimate_AIO_13_chunks_81f_00079.png",
+            "fullpath": "E:\\COMFY UI\\ComfyUI\\output\\Comfy_EverAnimate_AIO_13_chunks_81f_00079-audio.mp4"
           }
         }
       }
+    },
+    {
+      "id": 455,
+      "type": "ComfyEverAnimateColorCorrection",
+      "pos": [
+        2573.9676185942,
+        -1480.975565550007
+      ],
+      "size": [
+        296.3375,
+        218
+      ],
+      "flags": {},
+      "order": 68,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "settings",
+          "type": "EVERANIMATE_SETTINGS",
+          "link": 904
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 905
+        },
+        {
+          "label": "reference images",
+          "name": "reference_images",
+          "type": "IMAGE",
+          "link": 888
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            877
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "younestft/Comfy_EverAnimate",
+        "ver": "e8921fd594714e7c9be717591118a6466a7cd00a",
+        "Node name for S&R": "ComfyEverAnimateColorCorrection"
+      },
+      "widgets_values": [
+        12,
+        16,
+        "mkl_lab",
+        "per_frame",
+        0,
+        1
+      ]
+    },
+    {
+      "id": 222,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -1051.5231794259685,
+        -1383.2142910526823
+      ],
+      "size": [
+        390.50808204519035,
+        88
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 358
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            886
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.59",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 223,
+      "type": "UNETLoader",
+      "pos": [
+        -2917.1940039247575,
+        -1887.9857333927853
+      ],
+      "size": [
+        516.3789672851562,
+        92.85368347167969
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            863
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.59",
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "Wan Animate\\Wan2_2-Animate-14B_fp8_scaled_e5m2_KJ_v2.safetensors",
+        "default"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 478,
+      "type": "MarkdownNote",
+      "pos": [
+        -3450.495131369526,
+        -1885.8149689420306
+      ],
+      "size": [
+        450.1595041322312,
+        316.63636363636374
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Model Links",
+      "properties": {},
+      "widgets_values": [
+        "## WAN ANIMATE MODEL\n\n[Download Wan22Animate](https://huggingface.co/Kijai/WanVideo_comfy_fp8_scaled/tree/main/Wan22Animate)\n\n---\n\n## EVERANIMATE LORA\n\n[Download EverAnimate stage2 480p LoRA](https://huggingface.co/epfl-vita/everanimate/blob/main/ckpts/everanimate-v1-lora32/stage2_480p.safetensors)\n\n---\n\n## RELIGHT LORA\n\n[Download Wan22 Relight LoRA](https://huggingface.co/Kijai/WanVideo_comfy/tree/main/LoRAs/Wan22_relight)"
+      ],
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 177,
+      "type": "MarkdownNote",
+      "pos": [
+        -737.446632419212,
+        -2971.373120314427
+      ],
+      "size": [
+        690,
+        310
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Preprocessor links",
+      "properties": {},
+      "widgets_values": [
+        "Nodes:\n\n[https://github.com/kijai/ComfyUI-WanAnimatePreprocess](https://github.com/kijai/ComfyUI-WanAnimatePreprocess)\n\nModels:\n\nYOLO:\n\n[https://huggingface.co/Wan-AI/Wan2.2-Animate-14B/blob/main/process_checkpoint/det/yolov10m.onnx](https://huggingface.co/Wan-AI/Wan2.2-Animate-14B/blob/main/process_checkpoint/det/yolov10m.onnx)\n\nViTPose\n\nLarge:\n\n[https://huggingface.co/JunkyByte/easy_ViTPose/blob/main/onnx/wholebody/vitpose-l-wholebody.onnx]huggingface.co/JunkyByte/easy_ViTPose/blob/main/onnx/wholebody/vitpose-l-wholebody.onnx)\n\nHuge (needs both files):\n\n[https://huggingface.co/Kijai/vitpose_comfy/blob/main/onnx/vitpose_h_wholebody_model.onnx](https://huggingface.co/Kijai/vitpose_comfy/blob/main/onnx/vitpose_h_wholebody_model.onnx)\n\n[https://huggingface.co/Kijai/vitpose_comfy/blob/main/onnx/vitpose_h_wholebody_data.bin](https://huggingface.co/Kijai/vitpose_comfy/blob/main/onnx/vitpose_h_wholebody_data.bin)"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     }
   ],
   "links": [
@@ -4297,10 +4323,10 @@
     "VHS_KeepIntermediate": true,
     "workflowRendererVersion": "LG",
     "ds": {
-      "scale": 0.38554328942953175,
+      "scale": 0.289664379736688,
       "offset": [
-        3175.6835858537024,
-        2811.796256858656
+        5201.379972232666,
+        4178.783719142415
       ]
     }
   },

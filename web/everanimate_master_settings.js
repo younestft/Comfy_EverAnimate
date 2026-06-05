@@ -1,236 +1,157 @@
 import { app } from "../../../scripts/app.js";
 
 const MASTER_NODE = "ComfyEverAnimateMasterSettings";
-const INITIAL_NODE = "ComfyEverAnimateInitialChunk";
-const EXTENSION_NODE = "ComfyEverAnimateContinueChunk";
-const DEFAULT_EXTENSION_CARRY_FRAMES = 5;
+const INITIAL_CHUNK_NODE = "ComfyEverAnimateInitialChunk";
+const EXTENSION_CHUNK_NODE = "ComfyEverAnimateContinueChunk";
+const CHUNK_NODES = new Set([INITIAL_CHUNK_NODE, EXTENSION_CHUNK_NODE]);
+const INITIAL_CUSTOM_WIDGETS = new Set(["startup_carry_frames"]);
+const EXTENSION_CUSTOM_WIDGETS = new Set([
+  "num_motion_latents",
+  "continue_motion_max_frames",
+  "motion_handoff_strength",
+]);
 
-const SECTIONS = [
-  ["model", "Model / Conditioning"],
-  ["width", "Video Settings"],
-  ["seed", "Sampling Settings"],
-  ["num_video_anchor_latents", "EverAnimate Settings"],
-  ["clip_vision_output", "Guide Inputs"],
+const LEGACY_UI_ONLY_VALUES = new Set([
+  "Model / Conditioning",
+  "Video Settings",
+  "Sampling Settings",
+  "EverAnimate Settings",
+  "Guide Inputs",
+  "-",
+  "not calculated",
+]);
+
+const MASTER_WIDGET_NAMES = [
+  "ref_image_background",
+  "width",
+  "height",
+  "chunk_length",
+  "seed",
+  "steps",
+  "cfg",
+  "sampler_name",
+  "scheduler",
+  "denoise",
+  "num_video_anchor_latents",
+  "pose_strength",
+  "face_strength",
 ];
 
-function makeHeaderWidget(title) {
-  return {
-    name: `everanimate_header_${title}`,
-    type: "everanimate_header",
-    value: title,
-    serialize: false,
-    options: { serialize: false },
-    draw(ctx, node, widgetWidth, y) {
-      const margin = 10;
-      ctx.save();
-      ctx.strokeStyle = "#444";
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(margin, y + 7);
-      ctx.lineTo(widgetWidth - margin, y + 7);
-      ctx.stroke();
-      ctx.fillStyle = "#d8d8d8";
-      ctx.font = "bold 12px Arial";
-      ctx.textAlign = "left";
-      ctx.fillText(title, margin, y + 25);
-      ctx.restore();
-    },
-    computeSize(width) {
-      return [width, 36];
-    },
-    serializeValue() {
-      return undefined;
-    },
-  };
+function isBooleanLike(value) {
+  return typeof value === "boolean" || value === "true" || value === "false";
 }
 
-function installHeaders(node) {
-  if (!node.widgets || node._everAnimateHeadersInstalled) return;
-  node._everAnimateHeadersInstalled = true;
+function sanitizeMasterWidgetValues(values) {
+  if (!Array.isArray(values)) return values;
+  const cleaned = values.filter((value) => value != null && !LEGACY_UI_ONLY_VALUES.has(value));
+  const valuesOnly = cleaned.slice(0, MASTER_WIDGET_NAMES.length);
 
-  node.widgets = node.widgets.filter((widget) => !widget.name?.startsWith("everanimate_header_"));
-
-  for (const [beforeName, title] of [...SECTIONS].reverse()) {
-    const index = node.widgets.findIndex((widget) => widget.name === beforeName);
-    if (index >= 0) {
-      node.widgets.splice(index, 0, makeHeaderWidget(title));
-    }
+  if (valuesOnly.length >= 4 && !isBooleanLike(valuesOnly[0]) && isBooleanLike(valuesOnly[3])) {
+    return [valuesOnly[3], valuesOnly[0], valuesOnly[1], valuesOnly[2], ...valuesOnly.slice(4)];
   }
+  return valuesOnly;
+}
 
-  requestAnimationFrame(() => {
-    if (node.computeSize) {
-      node.setSize(node.computeSize());
-    }
-    node.setDirtyCanvas(true, true);
+function stripLegacyUiWidgets(node) {
+  if (!node?.widgets) return;
+  node.widgets = node.widgets.filter((widget) => {
+    return !widget?.type?.startsWith?.("everanimate_")
+      && !widget?.name?.startsWith?.("everanimate_header_")
+      && widget?.name !== "extension_chunks_needed"
+      && widget?.name !== "calculate chunks";
   });
 }
 
-function widgetValue(node, name, fallback = 0) {
-  const widget = node?.widgets?.find((item) => item.name === name);
-  const value = Number(widget?.value);
-  return Number.isFinite(value) ? value : fallback;
+function isAdvancedEnabled(node) {
+  const widget = node?.widgets?.find((item) => item?.name === "enable_advanced");
+  return widget?.value === true || widget?.value === "true";
 }
 
-function inputLinkSourceNode(node, inputName) {
-  const input = node.inputs?.find((item) => item.name === inputName);
-  const linkId = input?.link;
-  if (linkId == null) return null;
-  const link = app.graph?.links?.[linkId];
-  return link ? app.graph?.getNodeById?.(link.origin_id) : null;
+function requestCanvasRedraw(node) {
+  node?.setDirtyCanvas?.(true, true);
+  app.graph?.setDirtyCanvas?.(true, true);
 }
 
-function linkedInputNumericValue(node, inputName, fallback = 0, visited = new Set()) {
-  const input = node?.inputs?.find((item) => item.name === inputName);
-  const linkId = input?.link;
-  if (linkId == null) return fallback;
+function customWidgetNamesForNode(node) {
+  if (node?.comfyClass === INITIAL_CHUNK_NODE) return INITIAL_CUSTOM_WIDGETS;
+  if (node?.comfyClass === EXTENSION_CHUNK_NODE) return EXTENSION_CUSTOM_WIDGETS;
+  return new Set();
+}
 
-  const link = app.graph?.links?.[linkId];
-  const source = link ? app.graph?.getNodeById?.(link.origin_id) : null;
-  if (!source || visited.has(source.id)) return fallback;
-  visited.add(source.id);
+function setCustomWidgetsDisabled(node) {
+  const customWidgetNames = customWidgetNamesForNode(node);
+  if (!customWidgetNames.size) return;
 
-  const directWidget = source.widgets?.find((item) => Number.isFinite(Number(item.value)));
-  if (directWidget) return Number(directWidget.value);
-
-  for (const value of source.widgets_values ?? []) {
-    const number = Number(value);
-    if (Number.isFinite(number)) return number;
-  }
-
-  if (source.inputs?.length) {
-    for (const sourceInput of source.inputs) {
-      const value = linkedInputNumericValue(source, sourceInput.name, Number.NaN, visited);
-      if (Number.isFinite(value)) return value;
+  const disabled = !isAdvancedEnabled(node);
+  for (const widget of node?.widgets ?? []) {
+    if (!customWidgetNames.has(widget?.name)) continue;
+    widget.disabled = disabled;
+    if (widget.inputEl) {
+      widget.inputEl.disabled = disabled;
+      widget.inputEl.readOnly = disabled;
     }
   }
-
-  return fallback;
+  requestCanvasRedraw(node);
 }
 
-function firstOutputTargetNode(node, outputName, comfyClass) {
-  const output = node.outputs?.find((item) => item.name === outputName);
-  for (const linkId of output?.links ?? []) {
-    const link = app.graph?.links?.[linkId];
-    const target = link ? app.graph?.getNodeById?.(link.target_id) : null;
-    if (!comfyClass || target?.comfyClass === comfyClass) {
-      return target;
-    }
-  }
-  return null;
-}
+function wrapAdvancedToggle(node) {
+  const widget = node?.widgets?.find((item) => item?.name === "enable_advanced");
+  if (!widget || widget._everAnimateCustomToggleWrapped) return;
 
-function hasLinkedInput(node, inputName) {
-  const input = node?.inputs?.find((item) => item.name === inputName);
-  return input?.link != null;
-}
-
-function trimAmountFromFrames(frameCount) {
-  if (frameCount <= 0) return 0;
-  const latentCount = Math.floor((Math.max(1, frameCount) - 1) / 4) + 1;
-  return Math.max(0, latentCount * 4 - 3);
-}
-
-function calculateExtensionChunksNeeded(node) {
-  const master = inputLinkSourceNode(node, "initial_settings");
-  if (!master || master.comfyClass !== MASTER_NODE) {
-    return { value: "-", hint: "connect master" };
-  }
-
-  const frameCount = Math.floor(linkedInputNumericValue(master, "frame_count", 0));
-  if (frameCount <= 0) {
-    return { value: "-", hint: "connect frame count" };
-  }
-
-  const chunkLength = Math.max(1, Math.floor(widgetValue(master, "chunk_length", 81)));
-  const startupCarryFrames = Math.max(0, Math.floor(widgetValue(node, "startup_carry_frames", 1)));
-  const extension = firstOutputTargetNode(node, "settings", EXTENSION_NODE);
-  const extensionCarryFrames = Math.max(
-    1,
-    Math.floor(widgetValue(extension, "continue_motion_max_frames", DEFAULT_EXTENSION_CARRY_FRAMES)),
-  );
-
-  const hasReferenceImage = hasLinkedInput(master, "reference_image");
-  const startupTrim = hasReferenceImage && startupCarryFrames > 0 ? trimAmountFromFrames(startupCarryFrames) : 0;
-  const extensionTrim = trimAmountFromFrames(extensionCarryFrames);
-  const firstKept = Math.max(1, chunkLength - startupTrim);
-  const extensionKept = Math.max(1, chunkLength - extensionTrim);
-  const needed = frameCount <= firstKept ? 0 : Math.ceil((frameCount - firstKept) / extensionKept);
-
-  return {
-    value: String(needed),
-    hint: `${frameCount} frames`,
+  const originalCallback = widget.callback;
+  widget.callback = function everAnimateCustomToggleCallback(...args) {
+    const result = originalCallback?.apply(this, args);
+    setCustomWidgetsDisabled(node);
+    return result;
   };
+  widget._everAnimateCustomToggleWrapped = true;
 }
 
-function makeExtensionChunksNeededResultWidget() {
-  return {
-    name: "extension_chunks_needed",
-    type: "everanimate_result",
-    value: "-",
-    hint: "not calculated",
-    serialize: false,
-    options: { serialize: false },
-    draw(ctx, node, widgetWidth, y) {
-      const margin = 10;
-      const value = this.value ?? "-";
-      const hint = this.hint ?? "not calculated";
-      ctx.save();
-      ctx.fillStyle = "#9a9a9a";
-      ctx.font = "12px Arial";
-      ctx.textAlign = "left";
-      ctx.fillText("extension chunks needed", margin, y + 17);
-      ctx.fillStyle = "#d8d8d8";
-      ctx.font = "11px Arial";
-      ctx.fillText(hint, margin, y + 34);
-      ctx.fillStyle = "#e8e8e8";
-      ctx.font = "bold 20px Arial";
-      ctx.textAlign = "right";
-      ctx.fillText(String(value), widgetWidth - margin, y + 25);
-      ctx.restore();
-    },
-    computeSize(width) {
-      return [width, 42];
-    },
-    serializeValue() {
-      return undefined;
-    },
+function installChunkCustomSettingsLock(nodeType, nodeData) {
+  if (!CHUNK_NODES.has(nodeData.name) || nodeType.prototype._everAnimateCustomSettingsLockInstalled) return;
+
+  const originalOnNodeCreated = nodeType.prototype.onNodeCreated;
+  nodeType.prototype.onNodeCreated = function everAnimateChunkNodeCreated(...args) {
+    const result = originalOnNodeCreated?.apply(this, args);
+    wrapAdvancedToggle(this);
+    setCustomWidgetsDisabled(this);
+    return result;
   };
-}
 
-function installExtensionChunksNeeded(node) {
-  if (!node.widgets || node._everAnimateExtensionChunksInstalled) return;
-  node._everAnimateExtensionChunksInstalled = true;
+  const originalConfigure = nodeType.prototype.configure;
+  nodeType.prototype.configure = function everAnimateChunkConfigure(...args) {
+    const result = originalConfigure?.apply(this, args);
+    wrapAdvancedToggle(this);
+    setCustomWidgetsDisabled(this);
+    return result;
+  };
 
-  node.widgets = node.widgets.filter((widget) => widget.name !== "extension_chunks_needed");
-  const button = node.addWidget("button", "calculate chunks", null, () => {
-    const result = calculateExtensionChunksNeeded(node);
-    const widget = node.widgets?.find((item) => item.name === "extension_chunks_needed");
-    if (widget) {
-      widget.value = result.value;
-      widget.hint = result.hint;
-    }
-    node.setDirtyCanvas(true, true);
-  });
-  button.serialize = false;
-  button.options = { ...(button.options ?? {}), serialize: false };
-  node.widgets.push(makeExtensionChunksNeededResultWidget());
-
-  requestAnimationFrame(() => {
-    if (node.computeSize) {
-      node.setSize(node.computeSize());
-    }
-    node.setDirtyCanvas(true, true);
-  });
+  nodeType.prototype._everAnimateCustomSettingsLockInstalled = true;
 }
 
 app.registerExtension({
-  name: "ComfyEverAnimate.UI",
-  async nodeCreated(node) {
-    if (node.comfyClass === MASTER_NODE) {
-      setTimeout(() => installHeaders(node), 0);
-    }
-    if (node.comfyClass === INITIAL_NODE) {
-      setTimeout(() => installExtensionChunksNeeded(node), 0);
-    }
+  name: "ComfyEverAnimate.Cleanup",
+  async beforeRegisterNodeDef(nodeType, nodeData) {
+    installChunkCustomSettingsLock(nodeType, nodeData);
+    if (nodeData.name !== MASTER_NODE) return;
+
+    const originalConfigure = nodeType.prototype.configure;
+    nodeType.prototype.configure = function everAnimateConfigure(info) {
+      if (info?.widgets_values) {
+        info = { ...info, widgets_values: sanitizeMasterWidgetValues(info.widgets_values) };
+      }
+      const result = originalConfigure?.call(this, info);
+      stripLegacyUiWidgets(this);
+      return result;
+    };
+
+    const originalSerialize = nodeType.prototype.serialize;
+    nodeType.prototype.serialize = function everAnimateSerialize(...args) {
+      const data = originalSerialize?.apply(this, args);
+      if (data?.widgets_values) {
+        data.widgets_values = sanitizeMasterWidgetValues(data.widgets_values);
+      }
+      return data;
+    };
   },
 });

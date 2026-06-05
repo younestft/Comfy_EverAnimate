@@ -1,5 +1,4 @@
 import logging
-import math
 
 import comfy.samplers
 import comfy.model_management
@@ -8,6 +7,7 @@ import node_helpers
 import nodes
 import torch
 from comfy_api.latest import io
+
 
 log = logging.getLogger(__name__)
 
@@ -490,6 +490,13 @@ def _trim_image_batch(images, trim_amount):
     return images[trim_amount:]
 
 
+def _trim_amount_from_frame_carry(frame_count):
+    if int(frame_count) <= 0:
+        return 0
+    latent_count = ((max(1, int(frame_count)) - 1) // 4) + 1
+    return max(0, latent_count * 4 - 3)
+
+
 def _safe_image_batch(images, height, width):
     if images is not None and images.shape[0] > 0:
         return images
@@ -523,45 +530,6 @@ def _scheduler_default():
     return "normal" if "normal" in comfy.samplers.KSampler.SCHEDULERS else comfy.samplers.KSampler.SCHEDULERS[0]
 
 
-def _chunk_trim_amount_from_frames(frame_count):
-    if frame_count <= 0:
-        return 0
-    latent_count = ((max(1, int(frame_count)) - 1) // 4) + 1
-    return max(0, latent_count * 4 - 3)
-
-
-def _settings_output_target(settings):
-    return None
-
-
-def _settings_expected_chunk_count(settings):
-    return int(settings.get("chunk_index", 0)) + 1
-
-
-def _extension_chunks_required(settings, startup_carry_frames, continue_motion_max_frames=DEFAULT_CONTINUE_MOTION_MAX_FRAMES):
-    frame_count = int(settings.get("frame_count", 0))
-    if frame_count <= 0:
-        frame_count = _shortest_guide_length(
-            settings.get("pose_video"),
-            settings.get("face_video"),
-            settings.get("background_video"),
-            settings.get("character_mask"),
-        ) or 0
-    if frame_count <= 0:
-        return 0
-
-    if settings.get("reference_image") is not None and int(startup_carry_frames) > 0:
-        startup_trim_image = _chunk_trim_amount_from_frames(startup_carry_frames)
-    else:
-        startup_trim_image = 0
-    continue_trim_image = _chunk_trim_amount_from_frames(continue_motion_max_frames)
-    first_kept = max(1, int(settings["length"]) - int(startup_trim_image))
-    later_kept = max(1, int(settings["length"]) - int(continue_trim_image))
-    if int(frame_count) <= first_kept:
-        return 0
-    return int(math.ceil((int(frame_count) - first_kept) / later_kept))
-
-
 def _copy_settings(settings):
     copied = dict(settings)
     return copied
@@ -572,10 +540,10 @@ def _make_master_settings(
     positive,
     negative,
     vae,
+    ref_image_background,
     width,
     height,
     chunk_length,
-    ref_image_background,
     seed,
     steps,
     cfg,
@@ -592,7 +560,6 @@ def _make_master_settings(
     background_video=None,
     character_mask=None,
     video_anchor_latent=None,
-    frame_count=0,
 ):
     settings = {
         "model": model,
@@ -602,7 +569,6 @@ def _make_master_settings(
         "width": int(width),
         "height": int(height),
         "length": int(chunk_length),
-        "frame_count": int(frame_count),
         "ref_image_background": bool(ref_image_background),
         "batch_size": DEFAULT_BATCH_SIZE,
         "seed": int(seed),
@@ -707,8 +673,10 @@ def _run_settings_chunk(
 
     settings["previous_samples"] = sampled
     settings["chunk_index"] = int(settings.get("chunk_index", 0)) + 1
-    settings["video_frame_offset"] = int(settings.get("video_frame_offset", 0)) + int(kept_images.shape[0])
+    settings["video_frame_offset"] = int(_next_video_frame_offset)
     settings["last_frame_count"] = int(output.shape[0])
+    settings["last_trim_image"] = int(trim_image)
+    settings["chunk_kept_counts"] = list(settings.get("chunk_kept_counts", [])) + [int(kept_images.shape[0])]
 
     return output, settings
 
@@ -726,24 +694,45 @@ class ComfyEverAnimateMasterSettings(io.ComfyNode):
                 io.Conditioning.Input("positive"),
                 io.Conditioning.Input("negative"),
                 io.Vae.Input("vae"),
-                io.Int.Input("width", default=480, min=16, max=nodes.MAX_RESOLUTION, step=16),
-                io.Int.Input("height", default=832, min=16, max=nodes.MAX_RESOLUTION, step=16),
-                io.Int.Input("chunk_length", display_name="chunk length", default=81, min=1, max=nodes.MAX_RESOLUTION, step=4),
                 io.Boolean.Input(
                     "ref_image_background",
                     display_name="ref image background",
                     default=True,
                     tooltip="When enabled, background_video and character_mask inputs are ignored and the reference image/background carry is used instead.",
                 ),
+                io.Int.Input("width", default=480, min=16, max=nodes.MAX_RESOLUTION, step=16),
+                io.Int.Input("height", default=832, min=16, max=nodes.MAX_RESOLUTION, step=16),
+                io.Int.Input("chunk_length", display_name="chunk length", default=81, min=1, max=nodes.MAX_RESOLUTION, step=4),
                 io.Int.Input("seed", default=42, min=0, max=0xffffffffffffffff, control_after_generate=io.ControlAfterGenerate.fixed),
                 io.Int.Input("steps", default=4, min=1, max=10000),
                 io.Float.Input("cfg", default=1.0, min=0.0, max=100.0, step=0.01),
                 io.Combo.Input("sampler_name", options=comfy.samplers.KSampler.SAMPLERS, default="lcm" if "lcm" in comfy.samplers.KSampler.SAMPLERS else _sampler_default()),
                 io.Combo.Input("scheduler", options=comfy.samplers.KSampler.SCHEDULERS, default=_scheduler_default()),
                 io.Float.Input("denoise", default=1.0, min=0.0, max=1.0, step=0.01),
-                io.Int.Input("num_video_anchor_latents", default=4, min=1, max=16, step=1),
-                io.Float.Input("pose_strength", default=1.0, min=0.0, max=10.0, step=0.001),
-                io.Float.Input("face_strength", default=1.0, min=0.0, max=10.0, step=0.001),
+                io.Int.Input(
+                    "num_video_anchor_latents",
+                    default=4,
+                    min=1,
+                    max=16,
+                    step=1,
+                    tooltip="Number of reference anchor latents added before each chunk. Default: 4.",
+                ),
+                io.Float.Input(
+                    "pose_strength",
+                    default=1.0,
+                    min=0.0,
+                    max=10.0,
+                    step=0.001,
+                    tooltip="How strongly the pose video guides motion. 0 disables pose guidance. Default: 1.0.",
+                ),
+                io.Float.Input(
+                    "face_strength",
+                    default=1.0,
+                    min=0.0,
+                    max=10.0,
+                    step=0.001,
+                    tooltip="How strongly the face video guides facial movement. 0 disables face guidance. Default: 1.0.",
+                ),
                 io.ClipVisionOutput.Input("clip_vision_output", optional=True),
                 io.Image.Input("reference_image", optional=True),
                 io.Image.Input("face_video", optional=True),
@@ -751,17 +740,6 @@ class ComfyEverAnimateMasterSettings(io.ComfyNode):
                 io.Image.Input("background_video", optional=True),
                 io.Mask.Input("character_mask", optional=True),
                 io.Latent.Input("video_anchor_latent", optional=True),
-                io.Int.Input(
-                    "frame_count",
-                    display_name="frame count",
-                    default=0,
-                    min=0,
-                    max=999999,
-                    step=1,
-                    optional=True,
-                    force_input=True,
-                    tooltip="Optional socket-only planning frame count. Connect an INT value to calculate how many Extension Chunk nodes are needed without running the workflow.",
-                ),
             ],
             outputs=[
                 EverAnimateInitialSettings.Output(display_name="initial settings"),
@@ -784,13 +762,19 @@ class ComfyEverAnimateInitialChunk(io.ComfyNode):
             description="Generates the first EverAnimate chunk from master settings.",
             inputs=[
                 EverAnimateInitialSettings.Input("initial_settings", display_name="initial settings"),
+                io.Boolean.Input(
+                    "enable_advanced",
+                    display_name="use custom settings",
+                    default=False,
+                    tooltip="Turn on to use the value below. Off keeps the default.",
+                ),
                 io.Int.Input(
                     "startup_carry_frames",
                     default=DEFAULT_STARTUP_CARRY_FRAMES,
                     min=0,
                     max=nodes.MAX_RESOLUTION,
                     step=1,
-                    tooltip="Carries the reference image into the first chunk. 1 reduces startup flashes without adding extra duplicate frames.",
+                    tooltip="How many reference-image frames to carry into the first chunk. Default: 1.",
                 ),
             ],
             outputs=[
@@ -801,7 +785,9 @@ class ComfyEverAnimateInitialChunk(io.ComfyNode):
         )
 
     @classmethod
-    def execute(cls, initial_settings, startup_carry_frames) -> io.NodeOutput:
+    def execute(cls, initial_settings, enable_advanced, startup_carry_frames) -> io.NodeOutput:
+        if not enable_advanced:
+            startup_carry_frames = DEFAULT_STARTUP_CARRY_FRAMES
         output, next_settings = _run_settings_chunk(
             initial_settings,
             input_images=None,
@@ -821,13 +807,19 @@ class ComfyEverAnimateContinueChunk(io.ComfyNode):
             description="Generates the next EverAnimate extension chunk from cumulative images and settings.",
             inputs=[
                 EverAnimateSettings.Input("settings"),
+                io.Boolean.Input(
+                    "enable_advanced",
+                    display_name="use custom settings",
+                    default=False,
+                    tooltip="Turn on to use the values below. Off keeps the defaults.",
+                ),
                 io.Int.Input(
                     "num_motion_latents",
                     default=DEFAULT_NUM_MOTION_LATENTS,
                     min=0,
                     max=16,
                     step=1,
-                    tooltip="EverAnimate M. 1 is the recommended motion-memory default for smoother chunk handoff.",
+                    tooltip="How many previous latent frames to carry into the next chunk. Default: 1.",
                 ),
                 io.Int.Input(
                     "continue_motion_max_frames",
@@ -835,7 +827,7 @@ class ComfyEverAnimateContinueChunk(io.ComfyNode):
                     min=1,
                     max=nodes.MAX_RESOLUTION,
                     step=4,
-                    tooltip="Carries this many final decoded frames into the next chunk. 5 is usually smoother for WanAnimate.",
+                    tooltip="How many previous image frames to carry into the next chunk. Default: 5.",
                 ),
                 io.Float.Input(
                     "motion_handoff_strength",
@@ -843,7 +835,7 @@ class ComfyEverAnimateContinueChunk(io.ComfyNode):
                     min=0.0,
                     max=1.0,
                     step=0.01,
-                    tooltip="0.75 soft-locks carry frames to reduce flashing on low-step distilled runs.",
+                    tooltip="Strength of the image carry-over. Higher follows the previous chunk more closely. Default: 0.75.",
                 ),
                 io.Image.Input("images"),
             ],
@@ -858,11 +850,16 @@ class ComfyEverAnimateContinueChunk(io.ComfyNode):
     def execute(
         cls,
         settings,
+        enable_advanced,
         num_motion_latents,
         continue_motion_max_frames,
         motion_handoff_strength,
         images,
     ) -> io.NodeOutput:
+        if not enable_advanced:
+            num_motion_latents = DEFAULT_NUM_MOTION_LATENTS
+            continue_motion_max_frames = DEFAULT_CONTINUE_MOTION_MAX_FRAMES
+            motion_handoff_strength = DEFAULT_MOTION_HANDOFF_STRENGTH
         output, next_settings = _run_settings_chunk(
             settings,
             input_images=images,
@@ -874,18 +871,56 @@ class ComfyEverAnimateContinueChunk(io.ComfyNode):
         return io.NodeOutput(next_settings, output)
 
 
-def _match_image_stats(image, reference, strength):
-    strength = max(0.0, min(1.0, float(strength)))
-    if strength <= 0:
-        return image
-    src = image.float()
-    ref = reference.float()
-    src_mean = src.mean(dim=(0, 1), keepdim=True)
-    src_std = src.std(dim=(0, 1), keepdim=True).clamp_min(1e-6)
-    ref_mean = ref.mean(dim=(0, 1), keepdim=True)
-    ref_std = ref.std(dim=(0, 1), keepdim=True).clamp_min(1e-6)
-    matched = (src - src_mean) / src_std * ref_std + ref_mean
-    return torch.lerp(src, matched, strength).clamp(0.0, 1.0).to(image.dtype)
+def _merge_frame_ranges(ranges):
+    if not ranges:
+        return []
+    ranges = sorted(ranges)
+    merged = [ranges[0]]
+    for start, end in ranges[1:]:
+        prev_start, prev_end = merged[-1]
+        if start <= prev_end:
+            merged[-1] = (prev_start, max(prev_end, end))
+        else:
+            merged.append((start, end))
+    return merged
+
+
+def _boundary_ranges_from_settings(settings, total_frames, frames_before, frames_after):
+    total_frames = int(total_frames)
+    frames_before = max(0, int(frames_before))
+    frames_after = max(0, int(frames_after))
+    if total_frames <= 0 or (frames_before == 0 and frames_after == 0):
+        return []
+
+    kept_counts = [int(count) for count in settings.get("chunk_kept_counts", []) if int(count) > 0]
+    if not kept_counts:
+        length = int(settings.get("length", 81))
+        first_trim = _trim_amount_from_frame_carry(DEFAULT_STARTUP_CARRY_FRAMES)
+        later_trim = _trim_amount_from_frame_carry(DEFAULT_CONTINUE_MOTION_MAX_FRAMES)
+        first_kept = max(1, length - first_trim)
+        later_kept = max(1, length - later_trim)
+        chunk_count = max(1, int(settings.get("chunk_index", 1)))
+        kept_counts = [first_kept] + [later_kept] * max(0, chunk_count - 1)
+
+    ranges = []
+    boundary = 0
+    for count in kept_counts[:-1]:
+        boundary += int(count)
+        if boundary <= 0 or boundary >= total_frames:
+            continue
+        start = max(0, boundary - frames_before)
+        end = min(total_frames, boundary + frames_after)
+        if start < end:
+            ranges.append((start, end))
+    return _merge_frame_ranges(ranges)
+
+
+def _reference_for_frame_range(reference_images, start, end, total_frames):
+    if reference_images is None or reference_images.shape[0] <= 1:
+        return reference_images
+    if reference_images.shape[0] >= total_frames:
+        return reference_images[start:end]
+    return reference_images
 
 
 class ComfyEverAnimateColorCorrection(io.ComfyNode):
@@ -894,18 +929,38 @@ class ComfyEverAnimateColorCorrection(io.ComfyNode):
         return io.Schema(
             node_id="ComfyEverAnimateColorCorrection",
             display_name="EverAnimate Color Correction",
-            category="image/video",
-            description="Matches chunk color statistics to reference frames for smoother chunk continuity.",
+            category="image/filters",
+            description="Applies native Transfer Color only around EverAnimate chunk boundaries.",
             inputs=[
                 EverAnimateSettings.Input("settings"),
                 io.Image.Input("images"),
-                io.Image.Input("reference_images", display_name="reference images", optional=True),
-                io.Int.Input("source_window", default=12, min=0, max=99999),
-                io.Int.Input("reference_window", default=16, min=1, max=99999),
-                io.Combo.Input("method", options=["mkl_lab", "mean_std_rgb"], default="mkl_lab"),
-                io.Combo.Input("mode", options=["per_frame", "global"], default="per_frame"),
-                io.Int.Input("start_frame", default=0, min=0, max=99999),
-                io.Float.Input("strength", default=1.0, min=0.0, max=1.0, step=0.01),
+                io.Image.Input("reference_images", display_name="reference images"),
+                io.Int.Input(
+                    "frames_before",
+                    default=12,
+                    min=0,
+                    max=128,
+                    step=1,
+                    tooltip="Frames before each chunk join to color-correct. Default: 12.",
+                ),
+                io.Int.Input(
+                    "frames_after",
+                    default=16,
+                    min=0,
+                    max=128,
+                    step=1,
+                    tooltip="Frames after each chunk join to color-correct. Default: 16.",
+                ),
+                io.Combo.Input("method", options=["mkl_lab", "reinhard_lab", "histogram"], default="mkl_lab"),
+                io.Combo.Input("source_stats", options=["per_frame", "uniform"], default="per_frame"),
+                io.Float.Input(
+                    "strength",
+                    default=1.0,
+                    min=0.0,
+                    max=10.0,
+                    step=0.01,
+                    tooltip="Color correction strength. Default: 1.0.",
+                ),
             ],
             outputs=[
                 io.Image.Output(display_name="images"),
@@ -918,33 +973,35 @@ class ComfyEverAnimateColorCorrection(io.ComfyNode):
         cls,
         settings,
         images,
-        source_window,
-        reference_window,
+        reference_images,
+        frames_before,
+        frames_after,
         method,
-        mode,
-        start_frame,
+        source_stats,
         strength,
-        reference_images=None,
     ) -> io.NodeOutput:
-        if images is None or reference_images is None or images.shape[0] == 0 or reference_images.shape[0] == 0:
+        ranges = _boundary_ranges_from_settings(settings, images.shape[0], frames_before, frames_after)
+        if not ranges or float(strength) == 0.0:
             return io.NodeOutput(images)
 
-        corrected = images.clone()
-        start = min(max(0, int(start_frame)), corrected.shape[0])
-        count = int(source_window)
-        end = corrected.shape[0] if count <= 0 else min(corrected.shape[0], start + count)
-        refs = reference_images[-max(1, int(reference_window)) :]
+        from comfy_extras.nodes_post_processing import ColorTransfer
 
-        if mode == "global":
-            reference = refs.mean(dim=0)
-            for idx in range(start, end):
-                corrected[idx] = _match_image_stats(corrected[idx], reference, strength)
-        else:
-            for out_idx, idx in enumerate(range(start, end)):
-                ref_idx = min(out_idx, refs.shape[0] - 1)
-                corrected[idx] = _match_image_stats(corrected[idx], refs[ref_idx], strength)
+        output = images.clone()
+        for start, end in ranges:
+            target_slice = output[start:end]
+            reference_slice = _reference_for_frame_range(reference_images, start, end, images.shape[0])
+            if reference_slice is None or reference_slice.shape[0] == 0:
+                continue
+            corrected = ColorTransfer.execute(
+                target_slice,
+                reference_slice,
+                method,
+                {"source_stats": source_stats, "target_index": 0},
+                float(strength),
+            )[0]
+            output[start:end] = corrected.to(device=output.device, dtype=output.dtype)
 
-        return io.NodeOutput(corrected)
+        return io.NodeOutput(output)
 
 
 NODE_CLASS_MAPPINGS = {
