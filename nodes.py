@@ -9,12 +9,6 @@ import nodes
 import torch
 from comfy_api.latest import io
 
-try:
-    from server import PromptServer
-except Exception:
-    PromptServer = None
-
-
 log = logging.getLogger(__name__)
 
 
@@ -23,9 +17,6 @@ EverAnimateSettings = io.Custom("EVERANIMATE_SETTINGS")
 
 
 DEFAULT_BATCH_SIZE = 1
-DEFAULT_PREVIEW_FRAME_RATE = 24.0
-DEFAULT_PREVIEW_FILENAME_PREFIX = "Comfy_EverAnimate_chunk"
-DEFAULT_PREVIEW_FORMAT = "video/h264-mp4"
 DEFAULT_STARTUP_CARRY_FRAMES = 1
 DEFAULT_NUM_MOTION_LATENTS = 1
 DEFAULT_CONTINUE_MOTION_MAX_FRAMES = 5
@@ -476,33 +467,6 @@ class ComfyEverAnimate(io.ComfyNode):
         )
 
 
-class ComfyEverAnimateTrimImages(io.ComfyNode):
-    @classmethod
-    def define_schema(cls):
-        return io.Schema(
-            node_id="ComfyEverAnimateTrimImages",
-            display_name="Comfy EverAnimate Trim Images",
-            category="image/video",
-            description="Trim duplicated handoff frames after decoding Comfy EverAnimate chunks.",
-            inputs=[
-                io.Image.Input("images"),
-                io.Int.Input("trim_amount", default=0, min=0, max=99999),
-            ],
-            outputs=[
-                io.Image.Output(display_name="images"),
-            ],
-        )
-
-    @classmethod
-    def execute(cls, images, trim_amount) -> io.NodeOutput:
-        trim_amount = max(0, int(trim_amount))
-        if trim_amount <= 0:
-            return io.NodeOutput(images)
-        if trim_amount >= images.shape[0]:
-            return io.NodeOutput(images[-1:].clone())
-        return io.NodeOutput(images[trim_amount:])
-
-
 def _trim_latent(latent, trim_amount):
     trim_amount = max(0, int(trim_amount))
     out = latent.copy()
@@ -545,111 +509,10 @@ def _shortest_guide_length(*guides):
     return min(lengths) if lengths else None
 
 
-def _calculate_aio_chunk_count(
-    chunk_mode,
-    target_frames,
-    chunk_count,
-    length,
-    startup_trim_image,
-    continue_trim_image,
-    guide_length,
-):
-    first_kept = max(1, int(length) - int(startup_trim_image))
-    later_kept = max(1, int(length) - int(continue_trim_image))
-
-    if chunk_mode == "custom_chunks":
-        return max(1, int(chunk_count)), None
-
-    if chunk_mode == "auto_guide_length":
-        output_target = int(guide_length) if guide_length is not None else int(target_frames)
-    else:
-        output_target = int(target_frames)
-
-    output_target = max(1, output_target)
-    if output_target <= first_kept:
-        return 1, output_target
-    return 1 + math.ceil((output_target - first_kept) / later_kept), output_target
-
-
 def _repeat_reference_for_startup(reference_image, startup_carry_frames):
     if reference_image is None or int(startup_carry_frames) <= 0:
         return None
     return reference_image[:1].repeat((int(startup_carry_frames), 1, 1, 1))
-
-
-def _preview_payload_from_vhs_result(vhs_result):
-    if not isinstance(vhs_result, dict):
-        return None
-    previews = vhs_result.get("ui", {}).get("gifs", [])
-    return previews[0] if previews else None
-
-
-def _preview_ui_from_vhs_result(vhs_result):
-    if isinstance(vhs_result, dict):
-        return vhs_result.get("ui")
-    return None
-
-
-def _send_preview_event(preview, chunk_index, frame_count, actual_chunk_count):
-    if preview is None or PromptServer is None:
-        return
-    try:
-        PromptServer.instance.send_sync(
-            "everanimate.aio.preview",
-            {
-                "chunk_index": chunk_index,
-                "frame_count": frame_count,
-                "chunk_count": actual_chunk_count,
-                "preview": preview,
-            },
-            PromptServer.instance.client_id,
-        )
-    except Exception:
-        log.debug("Unable to send EverAnimate AIO preview event.", exc_info=True)
-
-
-def _save_chunk_preview(
-    images,
-    chunk_index,
-    actual_chunk_count,
-    preview_frame_rate,
-    preview_filename_prefix,
-    preview_format,
-    prompt=None,
-    extra_pnginfo=None,
-    unique_id=None,
-):
-    VideoCombine = getattr(nodes, "NODE_CLASS_MAPPINGS", {}).get("VHS_VideoCombine")
-    if VideoCombine is None:
-        try:
-            from videohelpersuite.nodes import VideoCombine
-        except Exception as exc:
-            raise RuntimeError(
-                "EverAnimate chunk MP4 previews require ComfyUI-VideoHelperSuite. "
-                "Install VideoHelperSuite or turn save_chunk_previews off."
-            ) from exc
-
-    filename_prefix = f"{preview_filename_prefix}_chunk_{chunk_index:03d}_preview"
-    vhs_unique_id = f"{unique_id}_chunk_{chunk_index:03d}" if unique_id is not None else None
-    result = VideoCombine().combine_video(
-        images=images.detach(),
-        frame_rate=float(preview_frame_rate),
-        loop_count=0,
-        filename_prefix=filename_prefix,
-        format=preview_format,
-        pingpong=False,
-        save_output=False,
-        prompt=prompt,
-        extra_pnginfo=extra_pnginfo,
-        unique_id=vhs_unique_id,
-        crf=19,
-        pix_fmt="yuv420p",
-        save_metadata=True,
-        trim_to_audio=False,
-    )
-    preview = _preview_payload_from_vhs_result(result)
-    _send_preview_event(preview, chunk_index, int(images.shape[0]), actual_chunk_count)
-    return _preview_ui_from_vhs_result(result)
 
 
 def _sampler_default():
@@ -1011,269 +874,91 @@ class ComfyEverAnimateContinueChunk(io.ComfyNode):
         return io.NodeOutput(next_settings, output)
 
 
-class ComfyEverAnimateAIO(io.ComfyNode):
+def _match_image_stats(image, reference, strength):
+    strength = max(0.0, min(1.0, float(strength)))
+    if strength <= 0:
+        return image
+    src = image.float()
+    ref = reference.float()
+    src_mean = src.mean(dim=(0, 1), keepdim=True)
+    src_std = src.std(dim=(0, 1), keepdim=True).clamp_min(1e-6)
+    ref_mean = ref.mean(dim=(0, 1), keepdim=True)
+    ref_std = ref.std(dim=(0, 1), keepdim=True).clamp_min(1e-6)
+    matched = (src - src_mean) / src_std * ref_std + ref_mean
+    return torch.lerp(src, matched, strength).clamp(0.0, 1.0).to(image.dtype)
+
+
+class ComfyEverAnimateColorCorrection(io.ComfyNode):
     @classmethod
     def define_schema(cls):
-        sampler_default = "uni_pc" if "uni_pc" in comfy.samplers.KSampler.SAMPLERS else comfy.samplers.KSampler.SAMPLERS[0]
-        scheduler_default = (
-            "normal" if "normal" in comfy.samplers.KSampler.SCHEDULERS else comfy.samplers.KSampler.SCHEDULERS[0]
-        )
         return io.Schema(
-            node_id="ComfyEverAnimateAIO",
-            display_name="EverAnimate AIO",
-            category="model/conditioning/video_models",
-            description="Runs chunked native WanAnimate sampling with EverAnimate anchors and image carry-over internally.",
+            node_id="ComfyEverAnimateColorCorrection",
+            display_name="EverAnimate Color Correction",
+            category="image/video",
+            description="Matches chunk color statistics to reference frames for smoother chunk continuity.",
             inputs=[
-                io.Model.Input("model"),
-                io.Conditioning.Input("positive"),
-                io.Conditioning.Input("negative"),
-                io.Vae.Input("vae"),
-                io.Int.Input("width", default=832, min=16, max=nodes.MAX_RESOLUTION, step=16),
-                io.Int.Input("height", default=480, min=16, max=nodes.MAX_RESOLUTION, step=16),
-                io.Int.Input("length", default=81, min=1, max=nodes.MAX_RESOLUTION, step=4),
-                io.Int.Input("batch_size", default=1, min=1, max=4096),
-                io.Combo.Input(
-                    "chunk_mode",
-                    options=["auto_target_frames", "auto_guide_length", "custom_chunks"],
-                    default="auto_target_frames",
-                    tooltip="Choose whether the node calculates chunks from target_frames, guide length, or chunk_count.",
-                ),
-                io.Int.Input("target_frames", default=405, min=1, max=999999, step=1),
-                io.Int.Input("chunk_count", default=5, min=1, max=256, step=1),
-                io.Int.Input("seed", default=42, min=0, max=0xffffffffffffffff),
-                io.Int.Input("steps", default=4, min=1, max=10000),
-                io.Float.Input("cfg", default=1.0, min=0.0, max=100.0, step=0.01),
-                io.Combo.Input("sampler_name", options=comfy.samplers.KSampler.SAMPLERS, default=sampler_default),
-                io.Combo.Input("scheduler", options=comfy.samplers.KSampler.SCHEDULERS, default=scheduler_default),
-                io.Float.Input("denoise", default=1.0, min=0.0, max=1.0, step=0.01),
-                io.Int.Input(
-                    "num_video_anchor_latents",
-                    default=4,
-                    min=1,
-                    max=16,
-                    step=1,
-                    tooltip="EverAnimate N. Identity anchor latent slots prepended to every chunk.",
-                ),
-                io.Int.Input(
-                    "num_motion_latents",
-                    default=1,
-                    min=0,
-                    max=16,
-                    step=1,
-                    tooltip="EverAnimate M. Latent motion memory used when prev_samples is used internally or externally.",
-                ),
-                io.Int.Input(
-                    "startup_carry_frames",
-                    default=1,
-                    min=0,
-                    max=nodes.MAX_RESOLUTION,
-                    step=1,
-                    tooltip="Reference-image frames carried into chunk 1 before trimming startup duplicates.",
-                ),
-                io.Int.Input(
-                    "continue_motion_max_frames",
-                    default=5,
-                    min=1,
-                    max=nodes.MAX_RESOLUTION,
-                    step=4,
-                    tooltip="Decoded frames carried from each completed chunk into the next chunk.",
-                ),
-                io.Float.Input(
-                    "motion_handoff_strength",
-                    default=0.75,
-                    min=0.0,
-                    max=1.0,
-                    step=0.01,
-                    tooltip="How strongly carried frames are locked. Lower values can reduce chunk flashing on low-step runs.",
-                ),
-                io.Float.Input("pose_strength", default=1.0, min=0.0, max=10.0, step=0.001),
-                io.Float.Input("face_strength", default=1.0, min=0.0, max=10.0, step=0.001),
-                io.Boolean.Input("save_chunk_previews", default=True),
-                io.Float.Input("preview_frame_rate", default=16.0, min=1.0, max=240.0, step=0.01),
-                io.String.Input("preview_filename_prefix", default="Comfy_EverAnimate_AIO"),
-                io.Combo.Input("preview_format", options=["video/h264-mp4"], default="video/h264-mp4"),
-                io.ClipVisionOutput.Input("clip_vision_output", optional=True),
-                io.Image.Input("reference_image", optional=True),
-                io.Image.Input("face_video", optional=True),
-                io.Image.Input("pose_video", optional=True),
-                io.Image.Input("background_video", optional=True),
-                io.Mask.Input("character_mask", optional=True),
-                io.Latent.Input(
-                    "video_anchor_latent",
-                    optional=True,
-                    tooltip="Advanced: prebuilt N anchor latents. Leave empty to repeat the reference image latent.",
-                ),
+                EverAnimateSettings.Input("settings"),
+                io.Image.Input("images"),
+                io.Image.Input("reference_images", display_name="reference images", optional=True),
+                io.Int.Input("source_window", default=12, min=0, max=99999),
+                io.Int.Input("reference_window", default=16, min=1, max=99999),
+                io.Combo.Input("method", options=["mkl_lab", "mean_std_rgb"], default="mkl_lab"),
+                io.Combo.Input("mode", options=["per_frame", "global"], default="per_frame"),
+                io.Int.Input("start_frame", default=0, min=0, max=99999),
+                io.Float.Input("strength", default=1.0, min=0.0, max=1.0, step=0.01),
             ],
             outputs=[
                 io.Image.Output(display_name="images"),
-                io.Int.Output(display_name="frame_count"),
-                io.Int.Output(display_name="chunk_count"),
             ],
-            hidden=[io.Hidden.unique_id, io.Hidden.prompt, io.Hidden.extra_pnginfo],
             is_experimental=True,
         )
 
     @classmethod
     def execute(
         cls,
-        model,
-        positive,
-        negative,
-        vae,
-        width,
-        height,
-        length,
-        batch_size,
-        chunk_mode,
-        target_frames,
-        chunk_count,
-        seed,
-        steps,
-        cfg,
-        sampler_name,
-        scheduler,
-        denoise,
-        num_video_anchor_latents,
-        num_motion_latents,
-        startup_carry_frames,
-        continue_motion_max_frames,
-        motion_handoff_strength,
-        pose_strength,
-        face_strength,
-        save_chunk_previews,
-        preview_frame_rate,
-        preview_filename_prefix,
-        preview_format,
-        clip_vision_output=None,
-        reference_image=None,
-        face_video=None,
-        pose_video=None,
-        background_video=None,
-        character_mask=None,
-        video_anchor_latent=None,
-        unique_id=None,
-        prompt=None,
-        extra_pnginfo=None,
+        settings,
+        images,
+        source_window,
+        reference_window,
+        method,
+        mode,
+        start_frame,
+        strength,
+        reference_images=None,
     ) -> io.NodeOutput:
-        startup_continue_motion = _repeat_reference_for_startup(reference_image, startup_carry_frames)
-        startup_continue_latents = ((max(1, int(startup_carry_frames)) - 1) // 4) + 1 if startup_continue_motion is not None else 0
-        startup_trim_image = max(0, startup_continue_latents * 4 - 3) if startup_continue_motion is not None else 0
-        continue_latents = ((max(1, int(continue_motion_max_frames)) - 1) // 4) + 1
-        continue_trim_image = max(0, continue_latents * 4 - 3)
-        guide_length = _shortest_guide_length(pose_video, face_video, background_video, character_mask)
-        actual_chunk_count, output_target_frames = _calculate_aio_chunk_count(
-            chunk_mode,
-            target_frames,
-            chunk_count,
-            length,
-            startup_trim_image,
-            continue_trim_image,
-            guide_length,
-        )
+        if images is None or reference_images is None or images.shape[0] == 0 or reference_images.shape[0] == 0:
+            return io.NodeOutput(images)
 
-        previous_images = None
-        previous_samples = None
-        video_frame_offset = 0
-        kept_chunks = []
+        corrected = images.clone()
+        start = min(max(0, int(start_frame)), corrected.shape[0])
+        count = int(source_window)
+        end = corrected.shape[0] if count <= 0 else min(corrected.shape[0], start + count)
+        refs = reference_images[-max(1, int(reference_window)) :]
 
-        for chunk_index in range(1, actual_chunk_count + 1):
-            if chunk_index == 1:
-                continue_motion = startup_continue_motion
-                carry_frame_count = max(1, int(startup_carry_frames)) if continue_motion is not None else 1
-            else:
-                continue_motion = previous_images
-                carry_frame_count = int(continue_motion_max_frames)
+        if mode == "global":
+            reference = refs.mean(dim=0)
+            for idx in range(start, end):
+                corrected[idx] = _match_image_stats(corrected[idx], reference, strength)
+        else:
+            for out_idx, idx in enumerate(range(start, end)):
+                ref_idx = min(out_idx, refs.shape[0] - 1)
+                corrected[idx] = _match_image_stats(corrected[idx], refs[ref_idx], strength)
 
-            (
-                chunk_positive,
-                chunk_negative,
-                latent,
-                trim_latent,
-                trim_image,
-                _next_video_frame_offset,
-            ) = _build_everanimate_chunk(
-                positive,
-                negative,
-                vae,
-                width,
-                height,
-                length,
-                batch_size,
-                num_video_anchor_latents,
-                num_motion_latents,
-                video_frame_offset,
-                pose_strength,
-                face_strength,
-                motion_handoff_strength,
-                carry_frame_count,
-                reference_image=reference_image,
-                clip_vision_output=clip_vision_output,
-                face_video=face_video,
-                pose_video=pose_video,
-                background_video=background_video,
-                character_mask=character_mask,
-                continue_motion=continue_motion,
-                prev_samples=previous_samples,
-                video_anchor_latent=video_anchor_latent,
-                allow_latent_memory_with_image_carry=True,
-            )
-
-            sampled = nodes.common_ksampler(
-                model,
-                int(seed),
-                int(steps),
-                float(cfg),
-                sampler_name,
-                scheduler,
-                chunk_positive,
-                chunk_negative,
-                latent,
-                denoise=float(denoise),
-            )[0]
-            previous_samples = sampled
-            decoded = _decode_latent_images(vae, _trim_latent(sampled, trim_latent))
-            kept_images = _trim_image_batch(decoded, trim_image)
-            kept_images = _safe_image_batch(kept_images, height, width)
-            kept_chunks.append(kept_images)
-            previous_images = kept_images
-            video_frame_offset += int(kept_images.shape[0])
-
-            if save_chunk_previews:
-                preview_images = torch.cat(kept_chunks, dim=0)
-                if output_target_frames is not None:
-                    preview_images = preview_images[:output_target_frames]
-                _save_chunk_preview(
-                    preview_images,
-                    chunk_index,
-                    actual_chunk_count,
-                    preview_frame_rate,
-                    preview_filename_prefix,
-                    preview_format,
-                    prompt=prompt,
-                    extra_pnginfo=extra_pnginfo,
-                    unique_id=unique_id,
-                )
-
-        images = torch.cat(kept_chunks, dim=0)
-        if output_target_frames is not None:
-            images = images[:output_target_frames]
-        return io.NodeOutput(images, int(images.shape[0]), int(actual_chunk_count))
+        return io.NodeOutput(corrected)
 
 
 NODE_CLASS_MAPPINGS = {
     "ComfyEverAnimate": ComfyEverAnimate,
-    "ComfyEverAnimateTrimImages": ComfyEverAnimateTrimImages,
-    "ComfyEverAnimateAIO": ComfyEverAnimateAIO,
     "ComfyEverAnimateMasterSettings": ComfyEverAnimateMasterSettings,
     "ComfyEverAnimateInitialChunk": ComfyEverAnimateInitialChunk,
     "ComfyEverAnimateContinueChunk": ComfyEverAnimateContinueChunk,
+    "ComfyEverAnimateColorCorrection": ComfyEverAnimateColorCorrection,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "ComfyEverAnimate": "Comfy EverAnimate",
-    "ComfyEverAnimateTrimImages": "Comfy EverAnimate Trim Images",
-    "ComfyEverAnimateAIO": "EverAnimate AIO",
     "ComfyEverAnimateMasterSettings": "EverAnimate Master Settings",
     "ComfyEverAnimateInitialChunk": "EverAnimate Initial Chunk",
     "ComfyEverAnimateContinueChunk": "EverAnimate Extension Chunk",
+    "ComfyEverAnimateColorCorrection": "EverAnimate Color Correction",
 }
