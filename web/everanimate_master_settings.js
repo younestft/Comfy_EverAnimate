@@ -3,6 +3,7 @@ import { app } from "../../../scripts/app.js";
 const MASTER_NODE = "ComfyEverAnimateMasterSettings";
 const INITIAL_CHUNK_NODE = "ComfyEverAnimateInitialChunk";
 const EXTENSION_CHUNK_NODE = "ComfyEverAnimateContinueChunk";
+const CHUNKS_CALCULATOR_NODE = "ComfyEverAnimateChunksCalculator";
 const CHUNK_NODES = new Set([INITIAL_CHUNK_NODE, EXTENSION_CHUNK_NODE]);
 const INITIAL_CUSTOM_WIDGETS = new Set(["startup_carry_frames"]);
 const EXTENSION_CUSTOM_WIDGETS = new Set([
@@ -129,10 +130,111 @@ function installChunkCustomSettingsLock(nodeType, nodeData) {
   nodeType.prototype._everAnimateCustomSettingsLockInstalled = true;
 }
 
+function ensureCalculatorStyles() {
+  if (document.getElementById("everanimate-calculator-styles")) return;
+  const style = document.createElement("style");
+  style.id = "everanimate-calculator-styles";
+  style.textContent = `
+    .everanimate-calculator-display {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 78px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.22);
+      color: #d7d7d7;
+      font-family: Arial, sans-serif;
+      line-height: 1.25;
+      user-select: none;
+    }
+    .everanimate-calculator-label {
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .everanimate-calculator-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function calculatorValueFromText(text) {
+  if (!text) return "--";
+  const boldMatch = String(text).match(/\*\*(.*?)\*\*/s);
+  if (boldMatch) return boldMatch[1].trim();
+  const line = String(text).split(/\r?\n/).map((item) => item.trim()).filter(Boolean).pop();
+  return line || "--";
+}
+
+function setCalculatorDisplay(container, value) {
+  container.innerHTML = "";
+
+  const label = document.createElement("div");
+  label.className = "everanimate-calculator-label";
+  label.textContent = "Total chunks needed";
+
+  const number = document.createElement("div");
+  number.className = "everanimate-calculator-value";
+  number.textContent = value || "--";
+
+  container.append(label, number);
+}
+
+function installChunksCalculatorDisplay(nodeType, nodeData) {
+  if (nodeData.name !== CHUNKS_CALCULATOR_NODE || nodeType.prototype._everAnimateCalculatorDisplayInstalled) return;
+
+  const originalOnNodeCreated = nodeType.prototype.onNodeCreated;
+  nodeType.prototype.onNodeCreated = function everAnimateCalculatorNodeCreated(...args) {
+    const result = originalOnNodeCreated?.apply(this, args);
+    ensureCalculatorStyles();
+
+    const container = document.createElement("div");
+    container.className = "everanimate-calculator-display";
+    setCalculatorDisplay(container, "--");
+    this._everAnimateCalculatorContainer = container;
+
+    let widget;
+    if (typeof this.addDOMWidget === "function") {
+      widget = this.addDOMWidget("chunks", "EverAnimateChunksCalculator", container, {
+        serialize: false,
+        hideOnZoom: false,
+      });
+      widget.computeSize = () => [0, 86];
+    } else {
+      widget = this.addWidget("text", "chunks", "--", () => {}, { serialize: false });
+    }
+
+    requestAnimationFrame(() => {
+      if (this.size?.[0] < 260) this.size[0] = 260;
+      requestCanvasRedraw(this);
+    });
+
+    return result;
+  };
+
+  const originalOnExecuted = nodeType.prototype.onExecuted;
+  nodeType.prototype.onExecuted = function everAnimateCalculatorExecuted(message, ...args) {
+    const result = originalOnExecuted?.call(this, message, ...args);
+    const text = Array.isArray(message?.text) ? message.text[0] : message?.text;
+    if (this._everAnimateCalculatorContainer) {
+      setCalculatorDisplay(this._everAnimateCalculatorContainer, calculatorValueFromText(text));
+    }
+    requestCanvasRedraw(this);
+    return result;
+  };
+
+  nodeType.prototype._everAnimateCalculatorDisplayInstalled = true;
+}
+
 app.registerExtension({
   name: "ComfyEverAnimate.Cleanup",
   async beforeRegisterNodeDef(nodeType, nodeData) {
     installChunkCustomSettingsLock(nodeType, nodeData);
+    installChunksCalculatorDisplay(nodeType, nodeData);
     if (nodeData.name !== MASTER_NODE) return;
 
     const originalConfigure = nodeType.prototype.configure;

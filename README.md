@@ -9,6 +9,7 @@ Native ComfyUI custom nodes for experimenting with EverAnimate-style latent anch
 - **EverAnimate Initial Chunk**: generates the first chunk from the initial settings and owns the startup carry setting.
 - **EverAnimate Extension Chunk**: generates later chunks from the previous cumulative images, owns the handoff settings, and carries sampler state forward.
 - **EverAnimate Color Correction**: applies native Transfer Color only around chunk boundaries to reduce color/brightness flashes without changing the whole video.
+- **EverAnimate Chunks Calculator**: previews the total number of chunks needed from the Master pose video frame count and chunk length.
 
 ## Intended Workflow
 
@@ -29,6 +30,14 @@ EverAnimate Master Settings -> EverAnimate Initial Chunk -> EverAnimate Extensio
 Connect the Master `initial settings` output to the Initial Chunk `initial settings` input. The Initial Chunk then outputs normal `settings` for Extension Chunk nodes. These two settings sockets are intentionally different types, so the initial settings cannot be plugged into Extension chunks and normal settings cannot be plugged back into Initial.
 
 For longer videos, add more **EverAnimate Extension Chunk** nodes. Connect each previous chunk `settings` output to the next chunk `settings` input, and each previous chunk `images` output to the next chunk `images` input. The final Video Combine connects to the last chunk `images`.
+
+Optional chunk calculation:
+
+```text
+EverAnimate Master Settings chunks calculator -> EverAnimate Chunks Calculator
+```
+
+The calculator previews `Total chunks needed` followed by the bold chunk count inside the node. Its output socket is an `INT` containing only the chunk count. It rounds partial chunks up and counts the Initial Chunk as chunk 1.
 
 Optional boundary color correction:
 

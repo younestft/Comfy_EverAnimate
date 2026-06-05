@@ -14,6 +14,7 @@ log = logging.getLogger(__name__)
 
 EverAnimateInitialSettings = io.Custom("EVERANIMATE_INITIAL_SETTINGS")
 EverAnimateSettings = io.Custom("EVERANIMATE_SETTINGS")
+EverAnimateChunksCalculator = io.Custom("EVERANIMATE_CHUNKS_CALCULATOR")
 
 
 DEFAULT_BATCH_SIZE = 1
@@ -535,6 +536,31 @@ def _copy_settings(settings):
     return copied
 
 
+def _make_chunks_calculator(pose_video, chunk_length):
+    return {
+        "pose_frame_count": int(pose_video.shape[0]) if pose_video is not None else None,
+        "chunk_length": int(chunk_length),
+    }
+
+
+def _format_chunks_calculator_markdown(chunks_calculator):
+    pose_frame_count = chunks_calculator.get("pose_frame_count")
+
+    if pose_frame_count is None:
+        return "Total chunks needed\n\n**Pose video is not connected**"
+
+    return f"Total chunks needed\n\n**{_calculate_total_chunks(chunks_calculator)}**"
+
+
+def _calculate_total_chunks(chunks_calculator):
+    pose_frame_count = chunks_calculator.get("pose_frame_count")
+    if pose_frame_count is None:
+        return 0
+    chunk_length = max(1, int(chunks_calculator.get("chunk_length", 1)))
+    pose_frame_count = int(pose_frame_count)
+    return max(1, (pose_frame_count + chunk_length - 1) // chunk_length)
+
+
 def _make_master_settings(
     model,
     positive,
@@ -742,6 +768,7 @@ class ComfyEverAnimateMasterSettings(io.ComfyNode):
                 io.Latent.Input("video_anchor_latent", optional=True),
             ],
             outputs=[
+                EverAnimateChunksCalculator.Output(display_name="chunks calculator"),
                 EverAnimateInitialSettings.Output(display_name="initial settings"),
             ],
             is_experimental=True,
@@ -749,7 +776,8 @@ class ComfyEverAnimateMasterSettings(io.ComfyNode):
 
     @classmethod
     def execute(cls, *args, **kwargs) -> io.NodeOutput:
-        return io.NodeOutput(_make_master_settings(*args, **kwargs))
+        settings = _make_master_settings(*args, **kwargs)
+        return io.NodeOutput(_make_chunks_calculator(settings.get("pose_video"), settings["length"]), settings)
 
 
 class ComfyEverAnimateInitialChunk(io.ComfyNode):
@@ -1004,12 +1032,34 @@ class ComfyEverAnimateColorCorrection(io.ComfyNode):
         return io.NodeOutput(output)
 
 
+class ComfyEverAnimateChunksCalculator:
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "chunks_calculator": ("EVERANIMATE_CHUNKS_CALCULATOR",),
+            },
+        }
+
+    RETURN_TYPES = ("INT",)
+    RETURN_NAMES = ("INT",)
+    FUNCTION = "main"
+    OUTPUT_NODE = True
+    CATEGORY = "model/conditioning/video_models"
+    DESCRIPTION = "Preview the total EverAnimate chunks needed from pose video frames and chunk length."
+
+    def main(self, chunks_calculator):
+        text = _format_chunks_calculator_markdown(chunks_calculator)
+        return {"ui": {"text": (text,)}, "result": (_calculate_total_chunks(chunks_calculator),)}
+
+
 NODE_CLASS_MAPPINGS = {
     "ComfyEverAnimate": ComfyEverAnimate,
     "ComfyEverAnimateMasterSettings": ComfyEverAnimateMasterSettings,
     "ComfyEverAnimateInitialChunk": ComfyEverAnimateInitialChunk,
     "ComfyEverAnimateContinueChunk": ComfyEverAnimateContinueChunk,
     "ComfyEverAnimateColorCorrection": ComfyEverAnimateColorCorrection,
+    "ComfyEverAnimateChunksCalculator": ComfyEverAnimateChunksCalculator,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -1018,4 +1068,5 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "ComfyEverAnimateInitialChunk": "EverAnimate Initial Chunk",
     "ComfyEverAnimateContinueChunk": "EverAnimate Extension Chunk",
     "ComfyEverAnimateColorCorrection": "EverAnimate Color Correction",
+    "ComfyEverAnimateChunksCalculator": "EverAnimate Chunks Calculator",
 }
