@@ -1,3 +1,5 @@
+
+
 # Comfy EverAnimate
 
 Native ComfyUI custom nodes for experimenting with EverAnimate-style latent anchors plus native WanAnimate image carry-over on top of native sampler workflows.
@@ -88,7 +90,7 @@ The flash-sensitive settings are on the chunk nodes:
 Clone this repository into your ComfyUI `custom_nodes` folder, then restart ComfyUI.
 
 ```bash
-git clone https://github.com/younestft/Comfy_EverAnimate.git Comfy-EverAnimate
+git clone https://github.com/younestft/Comfy_EverAnimate.git Comfy_EverAnimate
 ```
 
 This node pack is native-ComfyUI focused and does not depend on WanVideoWrapper.
